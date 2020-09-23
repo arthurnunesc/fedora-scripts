@@ -1,1 +1,1 @@
-Pop!_OS simple post-install script
+fedora simple post-install shellscript
