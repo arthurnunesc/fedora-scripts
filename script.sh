@@ -9,6 +9,7 @@ HOSTNAME_LAPTOP="fedora-laptop"
 
 APPS_DNF=(
   ffmpeg
+  htop
   gnome-tweaks
   https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm # Google Chrome browser
   chrome-gnome-shell
@@ -19,6 +20,7 @@ APPS_DNF=(
   https://release.axocdn.com/linux/gitkraken-amd64.rpm # GitKraken
   winehq-staging
   gcc-c++ make # NodeJS build tools
+  python-psutil # Ansible dconf dependency
   mozilla-fira-sans-fonts
   mozilla-fira-mono-fonts
 )
