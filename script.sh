@@ -12,7 +12,7 @@ APPS_DNF=(
   htop
   gnome-tweaks
   https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm # Google Chrome browser
-  chrome-gnome-shell
+  chrome-gnome-shell # For installing Gnome extensions via Chrome
   flameshot
   neofetch
   nautilus-dropbox
