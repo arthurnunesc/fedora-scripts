@@ -34,6 +34,7 @@ APPS_FLATPAK=(
   org.gimp.GIMP
   com.spotify.Client # non-official
   com.discordapp.Discord # non-official
+  # org.libreoffice.LibreOffice # non-official
 )
 APPS_FLATPAK_DESKTOP=(
 )
