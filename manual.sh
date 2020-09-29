@@ -42,7 +42,9 @@ dconf write /org/gnome/desktop/peripherals/mouse/accel-profile "'flat'"
 # Disable telemetry
 dconf write /org/gnome/desktop/privacy/report-technical-problems false
 
-# Set Flameshot shorcuts
+# Set custom shortcuts
+  # Flameshot shorcuts
+  # Super + T = Terminal
 
 # Flameshot setup
 flameshot config --showhelp false --autostart true --trayicon true --maincolor '#505050' --contrastcolor '#000000'

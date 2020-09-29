@@ -10,19 +10,20 @@ HOSTNAME_LAPTOP="fedora-laptop"
 APPS_DNF=(
   ffmpeg
   htop
-  gnome-tweaks
-  https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm # Google Chrome browser
-  chrome-gnome-shell # For installing Gnome extensions via Chrome
   flameshot
   neofetch
+  gnome-tweaks
+  mozilla-fira-sans-fonts
+  mozilla-fira-mono-fonts
+  https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm # Google Chrome browser
+  chrome-gnome-shell # For installing Gnome extensions via Chrome
   nautilus-dropbox
   code
+  alacritty
   https://release.axocdn.com/linux/gitkraken-amd64.rpm # GitKraken
   winehq-staging
   gcc-c++ make # NodeJS build tools
   python-psutil # Ansible dconf dependency
-  mozilla-fira-sans-fonts
-  mozilla-fira-mono-fonts
 )
 APPS_DNF_DESKTOP=(
   piper
@@ -39,9 +40,10 @@ APPS_FLATPAK=(
 APPS_FLATPAK_DESKTOP=(
 )
 
-PROJECTS_LINKS=(
+PROJECT_LINKS=(
 
 )
+
 # TESTS #
 
 
@@ -103,8 +105,7 @@ function install_apps() {
 
 function clone_repos() {
   mkdir /home/$USER/Projects
-  local arr=("$@")
-  for link in "${arr[@]}"; do
+  for link in "${PROJECT_LINKS[@]}"; do
     git clone $link /home/$USER/Projects
   done
 }
@@ -142,6 +143,9 @@ dnf config-manager --add-repo https://dl.winehq.org/wine-builds/fedora/32/winehq
 # Add VSCode repo
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
 sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
+
+# Add Alacritty repo
+dnf copr enable pschyska/alacritty
 
 # Install Node
 curl -sL https://rpm.nodesource.com/setup_14.x | bash -
