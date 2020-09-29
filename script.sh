@@ -39,6 +39,9 @@ APPS_FLATPAK=(
 APPS_FLATPAK_DESKTOP=(
 )
 
+PROJECTS_LINKS=(
+
+)
 # TESTS #
 
 
@@ -75,11 +78,8 @@ function update_repos_and_apps {
 }
 
 function install_apps() {
-  local package_type="$1"
-  shift
-  local arr=("$@")
-  if [[ "$package_type" = "dnf" ]]; then
-      for app in "${arr[@]}"; do
+  if [[ "$1" = "dnf" ]]; then
+      for app in "${APPS_DNF[@]}"; do
         if ! dnf list --installed | grep -q $app; then
           dnf install $app -y
           echo "+------------------------------------------------------------------+"
@@ -91,14 +91,22 @@ function install_apps() {
           echo "+------------------------------------------------------------------+"
         fi
       done
-  elif [[ "$package_type" = "flatpak" ]]; then
-    for app in "${arr[@]}"; do
+  elif [[ "$1" = "flatpak" ]]; then
+    for app in "${APPS_FLATPAK[@]}"; do
       flatpak install flathub $app -y
       echo "+------------------------------------------------------------------+"
       echo "[INSTALLED] - $app"
       echo "+------------------------------------------------------------------+"
     done
   fi
+}
+
+function clone_repos() {
+  mkdir /home/$USER/Projects
+  local arr=("$@")
+  for link in "${arr[@]}"; do
+    git clone $link /home/$USER/Projects
+  done
 }
 
 function reboot_if_desired() {
@@ -140,9 +148,9 @@ curl -sL https://rpm.nodesource.com/setup_14.x | bash -
 
 update_repos_and_apps
 
-install_apps dnf "${APPS_DNF[@]}"
+install_apps dnf
 
-install_apps flatpak "${APPS_FLATPAK[@]}"
+install_apps flatpak
 
 update_repos_and_apps
 
