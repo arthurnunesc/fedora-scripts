@@ -9,6 +9,7 @@ HOSTNAME_LAPTOP="fedora-laptop"
 
 APPS_DNF=(
   ffmpeg
+  gstreamer1-libav
   htop
   flameshot
   neofetch
@@ -35,13 +36,18 @@ APPS_FLATPAK=(
   org.gimp.GIMP
   com.spotify.Client # non-official
   com.discordapp.Discord # non-official
-  # org.libreoffice.LibreOffice # non-official
+  org.libreoffice.LibreOffice # non-official
 )
 APPS_FLATPAK_DESKTOP=(
 )
 
 PROJECT_LINKS=(
-
+  https://github.com/arthurnunesc/arthurnunesc.github.io.git
+  https://github.com/arthurnunesc/blog-posts.git
+  https://github.com/arthurnunesc/arthurnunesc.git
+  https://github.com/arthurnunesc/postinstall-fedora.git
+  https://github.com/arthurnunesc/postinstall-popos.git
+  https://github.com/arthurnunesc/ansible.git
 )
 
 # TESTS #
@@ -103,11 +109,15 @@ function install_apps() {
   fi
 }
 
-function clone_repos() {
-  mkdir /home/$USER/Projects
+function clone_repos {
+  if [ ! -d "/home/$MY_USER/Projects" ]; then
+    mkdir /home/$MY_USER/Projects
+  fi
+  cd /home/$MY_USER/Projects
   for link in "${PROJECT_LINKS[@]}"; do
-    git clone $link /home/$USER/Projects
+    git clone $link
   done
+  cd
 }
 
 function reboot_if_desired() {
@@ -155,6 +165,8 @@ update_repos_and_apps
 install_apps dnf
 
 install_apps flatpak
+
+clone_repos
 
 update_repos_and_apps
 
