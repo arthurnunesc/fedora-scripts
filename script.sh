@@ -19,12 +19,15 @@ APPS_DNF=(
   https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm # Google Chrome browser
   chrome-gnome-shell # For installing Gnome extensions via Chrome
   nautilus-dropbox
+  git
   code
   alacritty
   https://release.axocdn.com/linux/gitkraken-amd64.rpm # GitKraken
   winehq-staging
   gcc-c++ make # NodeJS build tools
   python-psutil # Ansible dconf dependency
+  dnf-plugins-core # Brave browser dependency
+  brave-browser
 )
 APPS_DNF_DESKTOP=(
   piper
@@ -153,6 +156,10 @@ dnf config-manager --add-repo https://dl.winehq.org/wine-builds/fedora/32/winehq
 # Add VSCode repo
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
 sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
+
+# Add Brave browser repo
+sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/
+sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
 
 # Add Alacritty repo
 dnf copr enable pschyska/alacritty -y
