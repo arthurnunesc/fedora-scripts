@@ -16,6 +16,7 @@ APPS_DNF=(
   gnome-tweaks
   mozilla-fira-sans-fonts
   mozilla-fira-mono-fonts
+  fira-code-fonts
   https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm # Google Chrome browser
   chrome-gnome-shell # For installing Gnome extensions via Chrome
   nautilus-dropbox
