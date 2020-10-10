@@ -10,13 +10,14 @@ HOSTNAME_LAPTOP="fedora-laptop"
 APPS_DNF=(
   ffmpeg
   gstreamer1-libav
+  fuse-exfat
   htop
   flameshot
   neofetch
   gnome-tweaks
   mozilla-fira-sans-fonts
   mozilla-fira-mono-fonts
-  fira-code-fonts
+  fira-code-fonts 
   https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm # Google Chrome browser
   chrome-gnome-shell # For installing Gnome extensions via Chrome
   nautilus-dropbox
@@ -47,10 +48,7 @@ APPS_FLATPAK_DESKTOP=(
 
 PROJECT_LINKS=(
   https://github.com/arthurnunesc/arthurnunesc.github.io.git
-  https://github.com/arthurnunesc/blog-posts.git
-  https://github.com/arthurnunesc/arthurnunesc.git
   https://github.com/arthurnunesc/postinstall-fedora.git
-  https://github.com/arthurnunesc/postinstall-popos.git
   https://github.com/arthurnunesc/ansible.git
 )
 
@@ -146,7 +144,7 @@ merge_lists "$OPTION"
 update_everything
 
 # Add RPM Fusion repos
-sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y
 
 # Add flathub repo
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
