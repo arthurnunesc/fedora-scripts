@@ -2,12 +2,13 @@
 
 # VARIABLES #
 
-USER="arthur"
-HOSTNAME="localhost"
-HOSTNAME_DESKTOP="fedora-desktop"
-HOSTNAME_LAPTOP="fedora-laptop"
+my_user="arthur"
+hostname="localhost"
+hostname_desktop="fedora-desktop"
+hostname_laptop="fedora-laptop"
 
-APPS_DNF=(
+dnf_apps=(
+  git
   ffmpeg
   gstreamer1-libav
   fuse-exfat
@@ -18,35 +19,24 @@ APPS_DNF=(
   mozilla-fira-sans-fonts
   mozilla-fira-mono-fonts
   fira-code-fonts 
-  https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm # Google Chrome browser
-  chrome-gnome-shell # For installing Gnome extensions via Chrome
   nautilus-dropbox
-  git
-  alacritty
   https://release.axocdn.com/linux/gitkraken-amd64.rpm # GitKraken
   winehq-staging
   gcc-c++ make # NodeJS build tools
   python-psutil # Ansible dconf dependency
 )
-APPS_DNF_DESKTOP=(
+dnf_apps_desktop_only=(
   piper
   lutris
   steam
 )
 
-APPS_FLATPAK=(
-  org.gimp.GIMP
+flatpak_apps=(
   com.spotify.Client # non-official
   com.discordapp.Discord # non-official
-  # org.libreoffice.LibreOffice # non-official
 )
-APPS_FLATPAK_DESKTOP=(
-)
-
-PROJECT_LINKS=(
-  https://github.com/arthurnunesc/arthurnunesc.github.io.git
-  https://github.com/arthurnunesc/postinstall-fedora.git
-  https://github.com/arthurnunesc/ansible.git
+flatpak_apps_desktop_only=(
+  org.gimp.GIMP
 )
 
 # TESTS #
@@ -56,20 +46,20 @@ PROJECT_LINKS=(
 
 function change_hostname() {
   if [ $1 -eq 1 ]; then
-    HOSTNAME="$HOSTNAME_DESKTOP"
+    hostname="$hostname_desktop"
   elif [ $1 -eq 2 ]; then
-    HOSTNAME="$HOSTNAME_LAPTOP"
+    hostname="$hostname_laptop"
   fi
-  hostnamectl set-hostname "$HOSTNAME"
+  hostnamectl set-hostname "$hostname"
 }
 
 function merge_lists() {
   if [ $1 -eq 1 ]; then
-  for app in "${APPS_DNF_DESKTOP[@]}"; do
-    APPS_DNF+=("$app")
+  for app in "${dnf_apps_desktop_only[@]}"; do
+    dnf_apps+=("$app")
   done
-  for app in "${APPS_FLATPAK_DESKTOP[@]}"; do
-    APPS_FLATPAK+=("$app")
+  for app in "${flatpak_apps_desktop_only[@]}"; do
+    flatpak_apps+=("$app")
   done
   fi
 }
@@ -77,6 +67,7 @@ function merge_lists() {
 function update_everything {
   dnf check-update -y
   dnf upgrade --refresh -y
+  flatpak update -y
 }
 
 function update_repos_and_apps {
@@ -84,39 +75,31 @@ function update_repos_and_apps {
   flatpak update -y
 }
 
-function install_apps() {
-  if [[ "$1" = "dnf" ]]; then
-      for app in "${APPS_DNF[@]}"; do
-        if ! dnf list --installed | grep -q $app; then
-          dnf install $app -y
-          echo "+------------------------------------------------------------------+"
-          echo "[JUST INSTALLED] - $app"
-          echo "+------------------------------------------------------------------+"
-        else
-          echo "+------------------------------------------------------------------+"
-          echo "[ALREADY INSTALLED] - $app"
-          echo "+------------------------------------------------------------------+"
-        fi
-      done
-  elif [[ "$1" = "flatpak" ]]; then
-    for app in "${APPS_FLATPAK[@]}"; do
-      flatpak install flathub $app -y
-      echo "+------------------------------------------------------------------+"
-      echo "[INSTALLED] - $app"
-      echo "+------------------------------------------------------------------+"
-    done
-  fi
-}
-
-function clone_github_projects {
-  if [ ! -d "/home/$MY_USER/Projects" ]; then
-    mkdir /home/$MY_USER/Projects
-  fi
-  cd /home/$MY_USER/Projects
-  for link in "${PROJECT_LINKS[@]}"; do
-    git clone $link
+function install_apps {
+  for app in "${dnf_apps[@]}"; do
+    if ! dnf list --installed | grep -q $app; then
+      dnf install $app -y
+      echo ""
+      echo "$app was installed"
+      echo ""
+    else
+      echo ""
+      echo "$app was already installed"
+      echo ""
+    fi
   done
-  cd
+  for app in "${flatpak_apps[@]}"; do
+    if ! flatpak list | grep -q $app; then
+      flatpak install flathub $app -y
+      echo ""
+      echo "$app was installed"
+      echo ""
+    else
+      echo ""
+      echo "$app was already installed"
+      echo ""
+    fi
+  done
 }
 
 function reboot_if_desired() {
@@ -152,21 +135,14 @@ dnf config-manager --add-repo https://dl.winehq.org/wine-builds/fedora/32/winehq
 # Add VSCode repo and install it
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
 sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
-sudo dnf install code -y
-
-# Add Alacritty repo
-dnf copr enable pschyska/alacritty -y
+dnf install code -y
 
 # Install Node
-curl -sL https://rpm.nodesource.com/setup_14.x | bash -
+curl -sL https://rpm.nodesource.com/setup_current.x | bash -
 
 update_repos_and_apps
 
-install_apps dnf
-
-install_apps flatpak
-
-clone_github_projects
+install_apps
 
 update_repos_and_apps
 
