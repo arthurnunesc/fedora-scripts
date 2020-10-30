@@ -13,7 +13,7 @@ dconf write /org/gnome/desktop/interface/clock-show-weekday true
 # # Change fonts to Fira Sans/Mono
 # dconf write /org/gnome/desktop/interface/document-font-name "'Fira Sans 11'"
 # dconf write /org/gnome/desktop/interface/font-name "'Fira Sans 11'"
-# dconf write /org/gnome/desktop/interface/monospace-font-name "'Fira Mono 10'"
+# dconf write /org/gnome/desktop/interface/monospace-font-name "'Fira Code 10'"
 
 # Show battery percentage
 dconf write /org/gnome/desktop/interface/show-battery-percentage true
