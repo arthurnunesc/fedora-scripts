@@ -153,6 +153,9 @@ sh ./components/gnome.sh
 # Clone GitHub projects
 sh ./components/clone_github_projects.sh
 
+# Install Arduino IDE
+sh ./components/arduino_ide.sh
+
 update_everything
 
 read -p "Do you want to reboot now?
