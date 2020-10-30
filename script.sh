@@ -13,7 +13,6 @@ dnf_apps=(
   gstreamer1-libav
   fuse-exfat
   htop
-  flameshot
   neofetch
   gnome-tweaks
   mozilla-fira-sans-fonts
@@ -66,20 +65,20 @@ function merge_lists() {
 }
 
 function update_everything {
-  dnf check-update -y
-  dnf upgrade --refresh -y
-  flatpak update -y
+  dnf check-update -y -q
+  dnf upgrade --refresh -y -q
+  flatpak update -y --noninteractive
 }
 
 function update_repos_and_apps {
-  dnf check-update -y
-  flatpak update -y
+  dnf check-update -y -q
+  flatpak update -y --noninteractive
 }
 
 function install_apps {
   for app in "${dnf_apps[@]}"; do
     if ! dnf list --installed | grep -q $app; then
-      dnf install $app -y
+      dnf install $app -y -q
       echo ""
       echo "$app was installed"
       echo ""
@@ -91,7 +90,7 @@ function install_apps {
   done
   for app in "${flatpak_apps[@]}"; do
     if ! flatpak list | grep -q $app; then
-      flatpak install flathub $app -y
+      flatpak install flathub $app -y --noninteractive
       echo ""
       echo "$app was installed"
       echo ""
