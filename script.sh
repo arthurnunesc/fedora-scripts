@@ -139,7 +139,7 @@ sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.m
 dnf install code -y
 
 # Install Node
-curl -sL https://rpm.nodesource.com/setup_current.x | bash -
+curl -sL https://rpm.nodesource.com/setup_lts.x | bash -
 
 # Install Rust's Cargo
 curl https://sh.rustup.rs -sSf | sh
