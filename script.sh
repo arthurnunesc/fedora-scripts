@@ -24,6 +24,7 @@ dnf_apps=(
   winehq-staging
   gcc-c++ make # NodeJS build tools
   python-psutil # Ansible dconf dependency
+  cmake # Alacritty build dependency
 )
 dnf_apps_desktop_only=(
   piper
@@ -139,6 +140,9 @@ dnf install code -y
 
 # Install Node
 curl -sL https://rpm.nodesource.com/setup_current.x | bash -
+
+# Install Rust's Cargo
+curl https://sh.rustup.rs -sSf | sh
 
 update_repos_and_apps
 
