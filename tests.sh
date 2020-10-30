@@ -10,10 +10,4 @@
 # sudo rm --force arduino-1.8.13-linux64.tar.xz
 
 # Set custom shortcuts
-  # Flameshot shorcuts
   # Super + T = Terminal
-
-# Flameshot setup
-flameshot config --showhelp false --autostart true --trayicon true --maincolor '#505050' --contrastcolor '#000000'
-
-# Install MarkText and AppImage Launcher
