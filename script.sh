@@ -22,6 +22,7 @@ dnf_apps=(
   https://release.axocdn.com/linux/gitkraken-amd64.rpm # GitKraken
   winehq-staging
   gcc-c++ make # NodeJS build tools
+  ansible
   python-psutil # Ansible dconf dependency
   cmake # Alacritty build dependency
 )
@@ -65,13 +66,13 @@ function merge_lists() {
 }
 
 function update_everything {
-  dnf check-update -y -q
+  dnf update -y -q
   dnf upgrade --refresh -y -q
   flatpak update -y --noninteractive
 }
 
 function update_repos_and_apps {
-  dnf check-update -y -q
+  dnf update -y -q
   flatpak update -y --noninteractive
 }
 
@@ -147,7 +148,7 @@ update_repos_and_apps
 
 install_apps
 
-update_repos_and_apps
+update_everything
 
 read -p "Do you want to reboot now?
 1. Yes
