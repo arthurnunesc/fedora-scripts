@@ -9,15 +9,16 @@ hostname_laptop="fedora-laptop"
 
 dnf_apps=(
   git
+  vim
   ffmpeg
   gstreamer1-libav
   fuse-exfat
+  gnome-tweaks
   htop
   neofetch
-  gnome-tweaks
   mozilla-fira-sans-fonts
   mozilla-fira-mono-fonts
-  fira-code-fonts 
+  fira-code-fonts
   nautilus-dropbox
   https://release.axocdn.com/linux/gitkraken-amd64.rpm # GitKraken
   winehq-staging
@@ -37,7 +38,6 @@ flatpak_apps=(
   com.discordapp.Discord # non-official
 )
 flatpak_apps_desktop_only=(
-  org.gimp.GIMP
 )
 
 # TESTS #
