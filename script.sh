@@ -109,7 +109,6 @@ function reboot_if_desired() {
   fi
 }
 
-
 # EXECUTION #
 
 read -p "Welcome! Choose where you're at:
@@ -147,6 +146,12 @@ curl https://sh.rustup.rs -sSf | sh
 update_repos_and_apps
 
 install_apps
+
+# Run Gnome config file
+sh ./components/gnome.sh
+
+# Clone GitHub projects
+sh ./components/clone_github_projects.sh
 
 update_everything
 
