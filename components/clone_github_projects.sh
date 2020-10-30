@@ -7,15 +7,9 @@ github_projects_links=(
   https://github.com/arthurnunesc/ansible.git
 )
 
-function clone_github_projects {
-  if [ ! -d "$HOME/Projects" ]; then
-    mkdir $HOME/Projects
-  fi
-  cd $HOME/Projects
-  for link in "${github_projects_links[@]}"; do
-    git clone $link
-  done
-  cd
-}
-
-clone_github_projects
+if [ ! -d "$HOME/Projects" ]; then
+  mkdir $HOME/Projects
+fi
+for link in "${github_projects_links[@]}"; do
+  git clone $link $HOME/Projects
+done

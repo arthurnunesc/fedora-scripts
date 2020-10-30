@@ -51,7 +51,7 @@ function change_hostname() {
   elif [ $1 -eq 2 ]; then
     hostname="$hostname_laptop"
   fi
-  hostnamectl set-hostname "$hostname"
+  sudo hostnamectl set-hostname "$hostname"
 }
 
 function merge_lists() {
@@ -66,20 +66,20 @@ function merge_lists() {
 }
 
 function update_everything {
-  dnf update -y -q
-  dnf upgrade --refresh -y -q
+  sudo dnf update -y -q
+  sudo dnf upgrade --refresh -y -q
   flatpak update -y --noninteractive
 }
 
 function update_repos_and_apps {
-  dnf update -y -q
+  sudo dnf update -y -q
   flatpak update -y --noninteractive
 }
 
 function install_apps {
   for app in "${dnf_apps[@]}"; do
-    if ! dnf list --installed | grep -q $app; then
-      dnf install $app -y -q
+    if ! sudo dnf list --installed | grep -q $app; then
+      sudo dnf install $app -y -q
       echo ""
       echo "$app was installed"
       echo ""
@@ -105,7 +105,7 @@ function install_apps {
 
 function reboot_if_desired() {
   if [ $1 -eq 1 ]; then
-    reboot
+    sudo reboot
   fi
 }
 
@@ -124,21 +124,21 @@ merge_lists "$OPTION"
 update_everything
 
 # Add RPM Fusion repos
-dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y
+sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y -q
 
 # Add flathub repo
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 # Add WineHQ repo
-dnf config-manager --add-repo https://dl.winehq.org/wine-builds/fedora/32/winehq.repo
+sudo dnf config-manager --add-repo https://dl.winehq.org/wine-builds/fedora/32/winehq.repo -q
 
 # Add VSCode repo and install it
-rpm --import https://packages.microsoft.com/keys/microsoft.asc
-sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
-dnf install code -y -q
+sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
+sudo dnf install code -y -q
 
 # Install Node
-curl -sL https://rpm.nodesource.com/setup_lts.x | bash -
+curl -sL https://rpm.nodesource.com/setup_lts.x | sudo bash -
 
 # Install Rust's Cargo
 curl https://sh.rustup.rs -sSf | sh
@@ -161,6 +161,7 @@ update_everything
 read -p "Do you want to reboot now?
 1. Yes
 2. No
+
 ---------> "   OPTION1
 
 reboot_if_desired "$OPTION1"
