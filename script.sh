@@ -9,12 +9,11 @@ hostname_laptop="fedora-laptop"
 
 dnf_apps=(
   git
-  vim
+  vim-enhanced
   ffmpeg
   gstreamer1-libav
   fuse-exfat
   gnome-tweaks
-  htop
   neofetch
   mozilla-fira-sans-fonts
   mozilla-fira-mono-fonts
@@ -22,10 +21,9 @@ dnf_apps=(
   nautilus-dropbox
   https://release.axocdn.com/linux/gitkraken-amd64.rpm # GitKraken
   winehq-staging
-  gcc-c++ make # NodeJS build tools
+  gcc-c++ # NodeJS build tools
   ansible
   python-psutil # Ansible dconf dependency
-  cmake # Alacritty build dependency
 )
 dnf_apps_desktop_only=(
   piper
@@ -139,9 +137,6 @@ sudo dnf install code -y -q
 
 # Install Node + NPM
 curl -sL https://rpm.nodesource.com/setup_lts.x | sudo bash -
-
-# Install Rust + Cargo
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 update_repos_and_apps
 
