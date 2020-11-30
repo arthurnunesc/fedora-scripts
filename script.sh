@@ -64,14 +64,14 @@ function merge_lists() {
 }
 
 function update_everything {
-  sudo dnf update -y -q
-  sudo dnf upgrade --refresh -y -q
-  flatpak update -y --noninteractive
+  sudo dnf update -y
+  sudo dnf upgrade --refresh -y
+  flatpak update -y
 }
 
 function update_repos_and_apps {
-  sudo dnf update -y -q
-  flatpak update -y --noninteractive
+  sudo dnf update -y 
+  flatpak update -y
 }
 
 function install_apps {
