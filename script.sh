@@ -2,7 +2,6 @@
 
 # VARIABLES #
 
-my_user="arthur"
 hostname="localhost"
 hostname_desktop="fedora-desktop"
 hostname_laptop="fedora-laptop"
@@ -44,16 +43,16 @@ flatpak_apps_desktop_only=(
 # FUNCTIONS #
 
 function change_hostname() {
-  if [ $1 -eq 1 ]; then
+  if [ "$1" -eq 1 ]; then
     hostname="$hostname_desktop"
-  elif [ $1 -eq 2 ]; then
+  elif [ "$1" -eq 2 ]; then
     hostname="$hostname_laptop"
   fi
   sudo hostnamectl set-hostname "$hostname"
 }
 
 function merge_lists() {
-  if [ $1 -eq 1 ]; then
+  if [ "$1" -eq 1 ]; then
   for app in "${dnf_apps_desktop_only[@]}"; do
     dnf_apps+=("$app")
   done
@@ -76,8 +75,8 @@ function update_repos_and_apps {
 
 function install_apps {
   for app in "${dnf_apps[@]}"; do
-    if ! sudo dnf list --installed | grep -q $app; then
-      sudo dnf install $app -y -q
+    if ! sudo dnf list --installed | grep -q "$app"; then
+      sudo dnf install "$app" -y -q
       echo ""
       echo "$app was installed"
       echo ""
@@ -88,8 +87,8 @@ function install_apps {
     fi
   done
   for app in "${flatpak_apps[@]}"; do
-    if ! flatpak list | grep -q $app; then
-      flatpak install flathub $app -y --noninteractive
+    if ! flatpak list | grep -q "$app"; then
+      flatpak install flathub "$app" -y --noninteractive
       echo ""
       echo "$app was installed"
       echo ""
@@ -102,14 +101,14 @@ function install_apps {
 }
 
 function reboot_if_desired() {
-  if [ $1 -eq 1 ]; then
+  if [ "$1" -eq 1 ]; then
     sudo reboot
   fi
 }
 
 # EXECUTION #
 
-read -p "Welcome! Choose where you're at:
+read -rp "Welcome! Choose where you're at:
 1. Desktop
 2. Laptop
 
@@ -153,7 +152,7 @@ sh ./components/arduino_ide.sh
 
 update_everything
 
-read -p "Do you want to reboot now?
+read -rp "Do you want to reboot now?
 1. Yes
 2. No
 
