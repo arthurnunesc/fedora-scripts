@@ -16,6 +16,7 @@ dnf_apps=(
   neofetch
   mozilla-fira-sans-fonts
   mozilla-fira-mono-fonts
+  jetbrains-mono-fonts
   fira-code-fonts
   https://release.axocdn.com/linux/gitkraken-amd64.rpm # GitKraken
   winehq-staging
