@@ -20,10 +20,10 @@ dnf_apps=(
   https://release.axocdn.com/linux/gitkraken-amd64.rpm # GitKraken
   winehq-staging
   piper
-  lutris
-  steam
 )
 dnf_apps_desktop_only=(
+  lutris
+  steam
 )
 
 flatpak_apps=(
@@ -104,9 +104,9 @@ function reboot_if_desired() {
 
 # EXECUTION #
 
-read -rp "Welcome! Choose where you're at:
-1. Desktop
-2. Laptop
+read -rp "welcome! choose where you're at:
+1. desktop
+2. laptop
 
 ---------> " OPTION
 
@@ -145,9 +145,9 @@ sh ./components/arduino_ide.sh
 
 update_everything
 
-read -rp "Do you want to reboot now?
-1. Yes
-2. No
+read -rp "do you want to reboot now?
+1. yes
+2. no
 
 ---------> "   OPTION1
 
