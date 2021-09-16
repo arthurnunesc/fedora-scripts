@@ -3,33 +3,42 @@
 # VARIABLES #
 
 hostname="localhost"
-hostname_desktop="fedora-desktop"
-hostname_laptop="fedora-laptop"
+hostname_desktop="desktop-fedora"
+hostname_laptop="laptop-fedora"
 
 dnf_apps=(
-  git
-  vim-enhanced
-  ffmpeg
-  gstreamer1-libav
-  fuse-exfat
-  gnome-tweaks
-  neofetch
-  mozilla-fira-sans-fonts
-  mozilla-fira-mono-fonts
-  jetbrains-mono-fonts
-  fira-code-fonts
-  https://release.axocdn.com/linux/gitkraken-amd64.rpm # GitKraken
-  winehq-staging
-  piper
+    zsh
+    git
+    vim-enhanced
+    ffmpeg
+    gstreamer1-libav
+    fuse-exfat
+    gnome-tweaks
+    neofetch
+    mozilla-fira-sans-fonts
+    mozilla-fira-mono-fonts
+    jetbrains-mono-fonts
+    fira-code-fonts
+    https://release.axocdn.com/linux/gitkraken-amd64.rpm # GitKraken
+    winehq-staging
+    piper
+    java-latest-openjdk
+    java-11-openjdk
+    java-1.8.0-openjdk
+    javafx
+    openjfx
+    nodejs
+    dconf-editor
 )
 dnf_apps_desktop_only=(
-  lutris
-  steam
+    lutris
+    steam
 )
 
 flatpak_apps=(
-  com.spotify.Client # non-official
-  com.discordapp.Discord # non-official
+    md.obsidian.Obsidian 
+    com.spotify.Client # non-official
+    com.discordapp.Discord # non-official
 )
 flatpak_apps_desktop_only=(
 )
@@ -40,67 +49,67 @@ flatpak_apps_desktop_only=(
 # FUNCTIONS #
 
 function change_hostname() {
-  if [ "$1" -eq 1 ]; then
-    hostname="$hostname_desktop"
-  elif [ "$1" -eq 2 ]; then
-    hostname="$hostname_laptop"
-  fi
-  sudo hostnamectl set-hostname "$hostname"
+    if [ "$1" -eq 1 ]; then
+        hostname="$hostname_desktop"
+    elif [ "$1" -eq 2 ]; then
+        hostname="$hostname_laptop"
+    fi
+    sudo hostnamectl set-hostname "$hostname"
 }
 
 function merge_lists() {
-  if [ "$1" -eq 1 ]; then
-  for app in "${dnf_apps_desktop_only[@]}"; do
-    dnf_apps+=("$app")
-  done
-  for app in "${flatpak_apps_desktop_only[@]}"; do
-    flatpak_apps+=("$app")
-  done
-  fi
+    if [ "$1" -eq 1 ]; then
+    for app in "${dnf_apps_desktop_only[@]}"; do
+        dnf_apps+=("$app")
+    done
+    for app in "${flatpak_apps_desktop_only[@]}"; do
+        flatpak_apps+=("$app")
+    done
+    fi
 }
 
 function update_everything {
-  sudo dnf update -y
-  sudo dnf upgrade --refresh -y
-  flatpak update -y
+    sudo dnf update -y
+    sudo dnf upgrade --refresh -y
+    flatpak update -y
 }
 
 function update_repos_and_apps {
-  sudo dnf update -y 
-  flatpak update -y
+    sudo dnf update -y 
+    flatpak update -y
 }
 
 function install_apps {
-  for app in "${dnf_apps[@]}"; do
-    if ! sudo dnf list --installed | grep -q "$app"; then
-      sudo dnf install "$app" -y -q
-      echo ""
-      echo "$app was installed"
-      echo ""
-    else
-      echo ""
-      echo "$app was already installed"
-      echo ""
-    fi
-  done
-  for app in "${flatpak_apps[@]}"; do
-    if ! flatpak list | grep -q "$app"; then
-      flatpak install flathub "$app" -y --noninteractive
-      echo ""
-      echo "$app was installed"
-      echo ""
-    else
-      echo ""
-      echo "$app was already installed"
-      echo ""
-    fi
-  done
+    for app in "${dnf_apps[@]}"; do
+        if ! sudo dnf list --installed | grep -q "$app"; then
+        sudo dnf install "$app" -y -q
+        echo ""
+        echo "$app was installed"
+        echo ""
+        else
+        echo ""
+        echo "$app was already installed"
+        echo ""
+        fi
+    done
+    for app in "${flatpak_apps[@]}"; do
+        if ! flatpak list | grep -q "$app"; then
+        flatpak install flathub "$app" -y --noninteractive
+        echo ""
+        echo "$app was installed"
+        echo ""
+        else
+        echo ""
+        echo "$app was already installed"
+        echo ""
+        fi
+    done
 }
 
 function reboot_if_desired() {
-  if [ "$1" -eq 1 ]; then
-    sudo reboot
-  fi
+    if [ "$1" -eq 1 ]; then
+        sudo reboot
+    fi
 }
 
 # EXECUTION #
