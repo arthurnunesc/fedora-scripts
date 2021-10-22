@@ -24,10 +24,6 @@ dnf_apps=(
     winehq-staging
     piper
     java-latest-openjdk
-    java-11-openjdk
-    java-1.8.0-openjdk
-    javafx
-    openjfx
     nodejs
 )
 dnf_apps_desktop_only=(
