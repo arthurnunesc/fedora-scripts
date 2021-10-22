@@ -15,6 +15,7 @@ dnf_apps=(
     fuse-exfat
     gnome-tweaks
     neofetch
+    dconf-editor
     mozilla-fira-sans-fonts
     mozilla-fira-mono-fonts
     jetbrains-mono-fonts
@@ -28,7 +29,6 @@ dnf_apps=(
     javafx
     openjfx
     nodejs
-    dconf-editor
 )
 dnf_apps_desktop_only=(
     lutris
