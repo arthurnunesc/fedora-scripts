@@ -19,6 +19,21 @@ dconf write /org/gnome/desktop/interface/font-name "'Fira Sans 11'"
 dconf write /org/gnome/desktop/interface/monospace-font-name "'Fira Code 10'"
 dconf write /org/gnome/desktop/wm/preferences/titlebar-font "'Fira Sans Bold 11'"
 
+# Change format to Brazil
+dconf write /system/locale/region "'pt_BR.UTF-8'"
+
+# Turn on over-amplification
+dconf write /org/gnome/desktop/sound/allow-volume-above-100-percent true
+
+# Making the PC not lock when it auto-locks
+dconf write /org/gnome/desktop/screensaver/lock-enabled false
+
+# Not show gnome tweaks welcome message
+dconf write /org/gnome/tweaks/show-extensions-notice false
+
+# Not show gnome software welcome message
+dconf write /org/gnome/software/first-run false
+
 # Show weekday on clock
 dconf write /org/gnome/desktop/interface/clock-show-weekday true
 
