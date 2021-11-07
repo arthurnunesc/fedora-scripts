@@ -42,7 +42,6 @@ flatpak_apps=(
     org.freedesktop.Piper
     org.gabmus.hydrapaper
     nl.hjdskes.gcolor3
-    com.hamrick.VueScan
     com.github.liferooter.textpieces
     com.belmoussaoui.Obfuscate
     com.obsproject.Studio
