@@ -3,29 +3,34 @@
 # VARIABLES #
 
 hostname="localhost"
-hostname_desktop="desktop-fedora"
-hostname_laptop="laptop-fedora"
+hostname_desktop="pc-fedora"
+hostname_laptop="notebook-fedora"
 
 dnf_apps=(
-    zsh
-    git
-    vim-enhanced
     ffmpeg
     gstreamer1-libav
     fuse-exfat
     gnome-tweaks
-    neofetch
     dconf-editor
+    neofetch
+    zsh
+    git
+    vim-enhanced
+    neovim python3-neovim
     mozilla-fira-sans-fonts
     mozilla-fira-mono-fonts
     jetbrains-mono-fonts
     fira-code-fonts
     https://release.axocdn.com/linux/gitkraken-amd64.rpm # GitKraken
     winehq-staging
+    python3
+    java-1.8.0-openjdk
+    java-11-openjdk
     java-latest-openjdk
     nodejs
+    rust cargo
     onedriver
-    nautilus-dropbox
+    i3 i3status dmenu i3lock xbacklight feh conky
 )
 dnf_apps_desktop_only=(
 )
@@ -128,9 +133,9 @@ function reboot_if_desired() {
 
 # EXECUTION #
 
-read -rp "welcome! choose where you're at:
-1. desktop
-2. laptop
+read -rp "Welcome! Choose where you're at:
+1. Desktop
+2. Notebook
 
 ---------> " OPTION
 
@@ -154,6 +159,10 @@ sudo dnf config-manager --add-repo https://dl.winehq.org/wine-builds/fedora/32/w
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
 sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
 sudo dnf install code -y -q
+
+# Install LunarVim
+bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
+
 
 # Add OneDriver repo
 sudo dnf copr enable jstaf/onedriver
