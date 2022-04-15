@@ -16,7 +16,6 @@ dnf_apps=(
     zsh
     git
     emacs
-    vim-enhanced
     neovim python3-neovim
     mozilla-fira-sans-fonts
     mozilla-fira-mono-fonts
