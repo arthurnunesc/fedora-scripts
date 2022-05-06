@@ -36,7 +36,7 @@ dnf_apps_desktop_only=(
 
 flatpak_apps=(
     md.obsidian.Obsidian 
-    org.mozilla.firefox
+    # org.mozilla.firefox
     com.transmissionbt.Transmission
     org.gnome.Extensions
     org.gnome.Epiphany
