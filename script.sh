@@ -3,8 +3,8 @@
 # VARIABLES #
 
 hostname="localhost"
-hostname_desktop="pc-fedora-do-tutu"
-hostname_laptop="notebook-fedora-do-tutu"
+hostname_desktop="fedora-desktop"
+hostname_laptop="fedora-laptop"
 
 dnf_apps=(
     ffmpeg
@@ -13,23 +13,19 @@ dnf_apps=(
     gnome-tweaks
     dconf-editor
     neofetch
-    zsh
-    git
-    emacs
-    neovim python3-neovim
     mozilla-fira-sans-fonts
     mozilla-fira-mono-fonts
     jetbrains-mono-fonts
     fira-code-fonts
+    git
+    neovim python3-neovim
     https://release.axocdn.com/linux/gitkraken-amd64.rpm # GitKraken
-    winehq-staging
     python3
     java-1.8.0-openjdk
     java-11-openjdk
     java-latest-openjdk
     nodejs
     rust cargo
-    onedriver
 )
 dnf_apps_desktop_only=(
 )
@@ -52,6 +48,7 @@ flatpak_apps=(
     com.github.tchx84.Flatseal
     com.spotify.Client
     com.discordapp.Discord
+    com.axosoft.GitKraken
     # cc.arduino.arduinoide
 )
 flatpak_apps_desktop_only=(
@@ -132,7 +129,7 @@ function reboot_if_desired() {
 
 # EXECUTION #
 
-read -rp "welcome! choose where you're at:
+read -rp "welcome! what device are you using this script in?
 1. desktop
 2. laptop
 
@@ -151,17 +148,6 @@ sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-releas
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 flatpak remote-add flathub-beta https://flathub.org/beta-repo/flathub-beta.flatpakrepo
 
-# Add WineHQ repo
-sudo dnf config-manager --add-repo https://dl.winehq.org/wine-builds/fedora/32/winehq.repo -q
-
-# Add VSCode repo and install it
-sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
-sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
-sudo dnf install code -y -q
-
-# Add OneDriver repo
-sudo dnf copr enable jstaf/onedriver
-
 update_repos_and_apps
 
 install_apps
@@ -171,9 +157,6 @@ sh ./components/gnome.sh
 
 # Clone GitHub projects
 sh ./components/clone_github_projects.sh
-
-# Install Arduino IDE
-sh ./components/arduino_ide.sh
 
 update_everything
 
