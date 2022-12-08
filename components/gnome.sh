@@ -13,13 +13,13 @@ dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/cus
 dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/command "'gnome-terminal'"
 dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/name "'Open Terminal'"
 
-# Change fonts to Fira Sans/Mono
-dconf write /org/gnome/desktop/interface/document-font-name "'Fira Sans 11'"
-dconf write /org/gnome/desktop/interface/font-name "'Fira Sans 11'"
-dconf write /org/gnome/desktop/interface/monospace-font-name "'Fira Code 10'"
-dconf write /org/gnome/desktop/wm/preferences/titlebar-font "'Fira Sans Bold 11'"
+# Change fonts to Zorin OS Default Fonts
+dconf write /org/gnome/desktop/interface/document-font-name "'Inter Regular 10'"
+dconf write /org/gnome/desktop/interface/font-name "'Sans Regular 10'"
+dconf write /org/gnome/desktop/interface/monospace-font-name "'JetBrains Mono Regular 10'"
+dconf write /org/gnome/desktop/wm/preferences/titlebar-font "'Inter Bold 10'"
 
-# Change format to Brazil
+# Change format to Botswana(the same as Brazil but in English)
 dconf write /system/locale/region "'en_BW.UTF-8'"
 
 # Turn on over-amplification

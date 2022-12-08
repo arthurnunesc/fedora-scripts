@@ -48,7 +48,7 @@ flatpak_apps=(
     com.github.tchx84.Flatseal
     com.spotify.Client
     com.discordapp.Discord
-    com.axosoft.GitKraken
+    # com.axosoft.GitKraken
     # cc.arduino.arduinoide
 )
 flatpak_apps_desktop_only=(
