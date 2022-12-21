@@ -17,15 +17,18 @@ dnf_apps=(
     mozilla-fira-mono-fonts
     jetbrains-mono-fonts
     fira-code-fonts
+    rsms-inter-fonts
+    cascadia-code-fonts
     git
     neovim python3-neovim
     https://release.axocdn.com/linux/gitkraken-amd64.rpm # GitKraken
-    python3
+    nodejs
+    python3 python3-pip
     java-1.8.0-openjdk
     java-11-openjdk
     java-latest-openjdk
-    nodejs
     rust cargo
+    libratbag-ratbagd piper
 )
 dnf_apps_desktop_only=(
 )
@@ -39,7 +42,6 @@ flatpak_apps=(
     org.gnome.SoundRecorder
     org.gnome.Shotwell
     org.gimp.GIMP
-    org.freedesktop.Piper
     org.gabmus.hydrapaper
     nl.hjdskes.gcolor3
     com.github.liferooter.textpieces
