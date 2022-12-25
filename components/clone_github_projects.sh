@@ -8,9 +8,6 @@ github_projects_links=(
   https://github.com/arthurnunesc/web-scraper-arabic-flashcards.git
 )
 
-if [ ! -d "$HOME/Projects" ]; then
-  mkdir "$HOME"/Projects
-fi
 cd "$HOME"/Projects || return
 for link in "${github_projects_links[@]}"; do
   git clone "$link"

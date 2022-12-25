@@ -157,7 +157,10 @@ install_apps
 # Run Gnome config file
 sh ./components/gnome.sh
 
-# Clone GitHub projects
+# Create Projects folder and clone GitHub projects
+if [ ! -d "$HOME/Projects" ]; then
+  mkdir "$HOME"/Projects
+fi
 # sh ./components/clone_github_projects.sh
 
 update_everything
