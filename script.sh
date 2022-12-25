@@ -170,6 +170,10 @@ fi
 # Set ZSH as default shell
 sudo usermod --shell /bin/zsh "$USER"
 
+# Install Starship
+curl -sS https://starship.rs/install.sh | sh
+
+
 update_everything
 
 read -rp "do you want to reboot now?
