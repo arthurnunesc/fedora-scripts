@@ -7,6 +7,7 @@ hostname_desktop="fedora-desktop"
 hostname_laptop="fedora-laptop"
 
 dnf_apps=(
+    git
     ffmpeg
     gstreamer1-libav
     fuse-exfat
@@ -15,20 +16,19 @@ dnf_apps=(
     neofetch
     mozilla-fira-sans-fonts
     mozilla-fira-mono-fonts
+    rsms-inter-fonts
     jetbrains-mono-fonts
     fira-code-fonts
-    rsms-inter-fonts
-    cascadia-code-fonts
-    git
+    sway
+    piper libratbag-ratbagd 
+    code
     neovim python3-neovim
-    https://release.axocdn.com/linux/gitkraken-amd64.rpm # GitKraken
-    nodejs
     python3 python3-pip
     java-1.8.0-openjdk
     java-11-openjdk
     java-latest-openjdk
+    nodejs
     rust cargo
-    libratbag-ratbagd piper
 )
 dnf_apps_desktop_only=(
 )
@@ -38,20 +38,16 @@ flatpak_apps=(
     # org.mozilla.firefox
     com.transmissionbt.Transmission
     org.gnome.Extensions
-    org.gnome.Epiphany
     org.gnome.SoundRecorder
     org.gnome.Shotwell
     org.gimp.GIMP
     org.gabmus.hydrapaper
     nl.hjdskes.gcolor3
-    com.github.liferooter.textpieces
     com.belmoussaoui.Obfuscate
     com.obsproject.Studio
     com.github.tchx84.Flatseal
     com.spotify.Client
     com.discordapp.Discord
-    # com.axosoft.GitKraken
-    # cc.arduino.arduinoide
 )
 flatpak_apps_desktop_only=(
     org.gnome.Boxes
@@ -143,6 +139,10 @@ merge_lists "$OPTION"
 
 update_everything
 
+# Add VSCode repo
+sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
+
 # Add RPM Fusion repos
 sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y -q
 
@@ -158,7 +158,7 @@ install_apps
 sh ./components/gnome.sh
 
 # Clone GitHub projects
-sh ./components/clone_github_projects.sh
+# sh ./components/clone_github_projects.sh
 
 update_everything
 

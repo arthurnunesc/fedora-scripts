@@ -16,7 +16,7 @@ dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/cus
 # Change fonts to Zorin OS Default Fonts
 dconf write /org/gnome/desktop/interface/font-name "'Inter Regular 10'"
 dconf write /org/gnome/desktop/interface/document-font-name "'Sans Regular 10'"
-dconf write /org/gnome/desktop/interface/monospace-font-name "'JetBrains Mono Regular 10'"
+dconf write /org/gnome/desktop/interface/monospace-font-name "'Kawkab Mono Regular 10'"
 dconf write /org/gnome/desktop/wm/preferences/titlebar-font "'Inter Bold 10'"
 
 # Change format to Botswana(the same as Brazil but in English)
