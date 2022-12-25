@@ -10,6 +10,7 @@ dnf_apps=(
     git
     ffmpeg
     gstreamer1-libav
+    util-linux-user
     fuse-exfat
     gnome-tweaks
     dconf-editor
@@ -19,8 +20,9 @@ dnf_apps=(
     rsms-inter-fonts
     jetbrains-mono-fonts
     fira-code-fonts
+    piper libratbag-ratbagd
     sway
-    piper libratbag-ratbagd 
+    zsh
     code
     neovim python3-neovim
     python3 python3-pip
@@ -162,6 +164,9 @@ if [ ! -d "$HOME/Projects" ]; then
   mkdir "$HOME"/Projects
 fi
 # sh ./components/clone_github_projects.sh
+
+# Set ZSH as default shell
+sudo usermod --shell /bin/zsh "$USER"
 
 update_everything
 
