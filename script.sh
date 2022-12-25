@@ -8,6 +8,7 @@ hostname_laptop="fedora-laptop"
 
 dnf_apps=(
     git
+    stow
     ffmpeg
     gstreamer1-libav
     util-linux-user
@@ -15,10 +16,11 @@ dnf_apps=(
     gnome-tweaks
     dconf-editor
     neofetch
+    rsms-inter-fonts
     mozilla-fira-sans-fonts
     mozilla-fira-mono-fonts
-    rsms-inter-fonts
     jetbrains-mono-fonts
+    cascadia-code-fonts
     fira-code-fonts
     piper libratbag-ratbagd
     sway
