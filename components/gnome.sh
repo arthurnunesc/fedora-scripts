@@ -14,10 +14,10 @@ dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/cus
 dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/name "'Open Terminal'"
 
 # Change fonts to Zorin OS Default Fonts
-dconf write /org/gnome/desktop/interface/font-name "'Inter Regular 10'"
-dconf write /org/gnome/desktop/interface/document-font-name "'Sans Regular 10'"
-dconf write /org/gnome/desktop/interface/monospace-font-name "'Kawkab Mono Regular 10'"
-dconf write /org/gnome/desktop/wm/preferences/titlebar-font "'Inter Bold 10'"
+dconf write /org/gnome/desktop/interface/font-name "'Inter Regular 12'"
+dconf write /org/gnome/desktop/interface/document-font-name "'Sans Regular 12'"
+dconf write /org/gnome/desktop/interface/monospace-font-name "'JetBrains Mono Regular 14'"
+dconf write /org/gnome/desktop/wm/preferences/titlebar-font "'Inter Bold 12'"
 
 # Change format to Botswana(the same as Brazil but in English)
 dconf write /system/locale/region "'en_BW.UTF-8'"
