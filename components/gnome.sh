@@ -14,10 +14,10 @@ dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/cus
 dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/name "'Open Terminal'"
 
 # Change fonts to Zorin OS Default Fonts
-dconf write /org/gnome/desktop/interface/font-name "'Inter Regular 12'"
-dconf write /org/gnome/desktop/interface/document-font-name "'Sans Regular 12'"
-dconf write /org/gnome/desktop/interface/monospace-font-name "'JetBrains Mono Regular 14'"
-dconf write /org/gnome/desktop/wm/preferences/titlebar-font "'Inter Bold 12'"
+dconf write /org/gnome/desktop/interface/font-name "'Inter Regular 11'"
+dconf write /org/gnome/desktop/interface/document-font-name "'Sans Regular 11'"
+dconf write /org/gnome/desktop/interface/monospace-font-name "'DejaVu Sans Mono Book 11'"
+dconf write /org/gnome/desktop/wm/preferences/titlebar-font "'Inter Bold 11'"
 
 # Change format to Botswana(the same as Brazil but in English)
 dconf write /system/locale/region "'en_BW.UTF-8'"
@@ -38,7 +38,7 @@ dconf write /org/gnome/software/first-run false
 dconf write /org/gnome/desktop/interface/clock-show-weekday true
 
 # Change scaling
-# dconf write /org/gnome/desktop/interface/text-scaling-factor "1.25"
+# dconf write /org/gnome/desktop/interface/text-scaling-factor "1.45"
 
 # Show battery percentage
 dconf write /org/gnome/desktop/interface/show-battery-percentage true
