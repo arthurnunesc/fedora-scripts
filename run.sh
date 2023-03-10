@@ -99,26 +99,18 @@ function install_apps {
   for app in "${dnf_apps[@]}"; do
     if ! sudo dnf list --installed | grep -q "$app"; then
       sudo dnf install "$app" -y -q
-      echo ""
-      echo "$app was installed"
-      echo ""
+      echo "Package $app was installed."
     else
-      echo ""
-      echo "$app was already installed"
-      echo ""
+      echo "Package $app was already installed."
     fi
   done
 
   for app in "${flatpak_apps[@]}"; do
     if ! flatpak list | grep -q "$app"; then
       flatpak install flathub "$app" -y --noninteractive
-      echo ""
-      echo "$app was installed"
-      echo ""
+      echo "Package $app was installed."
     else
-      echo ""
-      echo "$app was already installed"
-      echo ""
+      echo "Package $app was already installed."
     fi
   done
 }
@@ -131,10 +123,8 @@ function reboot_if_desired() {
 
 # EXECUTION #
 
-read -rp "welcome! what device are you using this script in?
-1. desktop
-2. laptop
-
+read -rp "Welcome! In what device are you using this script in?
+Type 1 for 'desktop' or 2 for 'laptop'
 ---------> " OPTION
 
 change_hostname "$OPTION"
@@ -183,10 +173,9 @@ sudo usermod --shell /bin/zsh "$USER"
 
 update_everything
 
-read -rp "do you want to reboot now?
-1. yes
-2. no
-
+echo ""
+read -rp "Do you want to reboot the system now?
+Type 1 for 'yes' or 2 for 'no'
 ---------> "   OPTION1
 
 reboot_if_desired "$OPTION1"
