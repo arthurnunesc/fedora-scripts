@@ -17,7 +17,6 @@ dnf_apps=(
   rsms-inter-fonts
   mozilla-fira-sans-fonts
   jetbrains-mono-fonts
-  meslo-lg-fonts
   piper
   libratbag-ratbagd
   zsh
