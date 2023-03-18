@@ -20,6 +20,7 @@ dnf_apps=(
   piper
   libratbag-ratbagd
   zsh
+  dash
   git
   stow
   code
@@ -37,7 +38,7 @@ dnf_apps_desktop_only=(
 
 flatpak_apps=(
   # org.mozilla.firefox
-  md.obsidian.Obsidian 
+  md.obsidian.Obsidian
   com.transmissionbt.Transmission
   org.gnome.Extensions
   org.gnome.SoundRecorder
@@ -60,7 +61,6 @@ flatpak_apps_desktop_only=(
 
 # TESTS #
 
-
 # FUNCTIONS #
 
 function change_hostname() {
@@ -75,11 +75,11 @@ function change_hostname() {
 function merge_lists() {
   if [ "$1" -eq 1 ]; then
     for app in "${dnf_apps_desktop_only[@]}"; do
-	  dnf_apps+=("$app")
-	done
-	for app in "${flatpak_apps_desktop_only[@]}"; do
-		flatpak_apps+=("$app")
-	done
+      dnf_apps+=("$app")
+    done
+    for app in "${flatpak_apps_desktop_only[@]}"; do
+      flatpak_apps+=("$app")
+    done
   fi
 }
 
@@ -90,7 +90,7 @@ function update_everything {
 }
 
 function update_repos_and_apps {
-  sudo dnf update -y 
+  sudo dnf update -y
   flatpak update -y
 }
 
@@ -153,6 +153,23 @@ update_repos_and_apps
 
 install_apps
 
+# Docker
+sudo dnf remove docker \
+  docker-client \
+  docker-client-latest \
+  docker-common \
+  docker-latest \
+  docker-latest-logrotate \
+  docker-logrotate \
+  docker-selinux \
+  docker-engine-selinux \
+  docker-engine
+sudo dnf -y install dnf-plugins-core
+sudo dnf config-manager \
+  --add-repo \
+  https://download.docker.com/linux/fedora/docker-ce.repo
+sudo dnf install docker docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose docker-compose-plugin
+
 # Create Projects folder and clone GitHub projects
 if [ ! -d "$HOME/Projects" ]; then
   mkdir "$HOME"/Projects
@@ -175,6 +192,6 @@ update_everything
 echo ""
 read -rp "Do you want to reboot the system now?
 Type 1 for 'yes' or 2 for 'no'
----------> "   OPTION1
+---------> " OPTION1
 
 reboot_if_desired "$OPTION1"
