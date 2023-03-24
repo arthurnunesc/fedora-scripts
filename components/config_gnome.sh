@@ -16,7 +16,7 @@ dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/cus
 # Change fonts to Zorin OS Default Fonts
 dconf write /org/gnome/desktop/interface/font-name "'Inter Regular 11'"
 dconf write /org/gnome/desktop/interface/document-font-name "'Sans Regular 11'"
-dconf write /org/gnome/desktop/interface/monospace-font-name "'Meslo LG M Regular 11'"
+dconf write /org/gnome/desktop/interface/monospace-font-name "'Iosevka Regular 11'"
 dconf write /org/gnome/desktop/wm/preferences/titlebar-font "'Inter Bold 11'"
 
 # Change format to Botswana(the same as Brazil but in English)
@@ -51,3 +51,6 @@ dconf write /org/gnome/desktop/peripherals/mouse/accel-profile "'flat'"
 
 # Turn on minimize button and shuffle them to the right
 dconf write /org/gnome/desktop/wm/preferences/button-layout "'close,minimize:appmenu'"
+
+# Change GTK3 theme to Adwaita-dark
+dconf write /org/gnome/desktop/interface/gtk-theme "'Adwaita-dark'"
