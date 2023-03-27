@@ -7,7 +7,7 @@ hostname_desktop="fedora-desktop"
 hostname_laptop="fedora-laptop"
 
 dnf_apps=(
-  ffmpeg gstreamer1-libav util-linux-user fuse-exfat
+  ffmpeg gstreamer1-libav util-linux-user fuse-exfat dnf-plugins-core
   gnome-tweaks dconf-editor
   rsms-inter-fonts cascadia-code-fonts mozilla-fira-sans-fonts jetbrains-mono-fonts
   piper libratbag-ratbagd
@@ -21,6 +21,7 @@ dnf_apps=(
   java-1.8.0-openjdk java-11-openjdk java-17-openjdk java-latest-openjdk
   nodejs
   rust cargo
+  docker docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose docker-compose-plugin docker-machine
 )
 dnf_apps_desktop_only=(
 )
@@ -31,9 +32,9 @@ flatpak_apps=(
   com.transmissionbt.Transmission
   org.gnome.Extensions
   org.gnome.SoundRecorder
-  org.gnome.Shotwell
+  org.gnome.Shotwell # Outdated runtime
   org.gimp.GIMP
-  org.gabmus.hydrapaper
+  org.gabmus.hydrapaper # Outdated runtime
   nl.hjdskes.gcolor3
   com.belmoussaoui.Obfuscate
   com.obsproject.Studio
@@ -52,7 +53,7 @@ flatpak_apps_desktop_only=(
 
 # FUNCTIONS #
 
-function change_hostname() {
+change_hostname() {
   if [ "$1" -eq 1 ]; then
     hostname="$hostname_desktop"
   elif [ "$1" -eq 2 ]; then
@@ -61,7 +62,7 @@ function change_hostname() {
   sudo hostnamectl set-hostname "$hostname"
 }
 
-function merge_lists() {
+merge_lists() {
   if [ "$1" -eq 1 ]; then
     for app in "${dnf_apps_desktop_only[@]}"; do
       dnf_apps+=("$app")
@@ -72,18 +73,18 @@ function merge_lists() {
   fi
 }
 
-function update_everything {
+update_everything() {
   sudo dnf update -y
   sudo dnf upgrade --refresh -y
   flatpak update -y
 }
 
-function update_repos_and_apps {
+update_repos_and_apps() {
   sudo dnf update -y
   flatpak update -y
 }
 
-function install_apps {
+install_apps() {
   for app in "${dnf_apps[@]}"; do
     if ! sudo dnf list --installed | grep -q "$app"; then
       sudo dnf install "$app" -y -q
@@ -103,7 +104,7 @@ function install_apps {
   done
 }
 
-function reboot_if_desired() {
+reboot_if_desired() {
   if [ "$1" -eq 1 ]; then
     sudo reboot
   fi
@@ -131,30 +132,17 @@ sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.m
 # Add RPM Fusion free and nonfree repos
 sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-"$(rpm -E %fedora)".noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-"$(rpm -E %fedora)".noarch.rpm -y -q
 
+# Remove previous Docker versions and add its repo
+sudo dnf -y remove docker docker-client docker-client-latest docker-common docker-latest docker-latest-logrotate docker-logrotate docker-selinux docker-engine-selinux docker-engine
+sudo dnf -y config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
+
 # Add flathub repo
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-flatpak remote-add flathub-beta https://flathub.org/beta-repo/flathub-beta.flatpakrepo
+flatpak remote-add --if-not-exists flathub-beta https://flathub.org/beta-repo/flathub-beta.flatpakrepo
 
 update_repos_and_apps
 
 install_apps
-
-# Docker
-sudo dnf remove docker \
-  docker-client \
-  docker-client-latest \
-  docker-common \
-  docker-latest \
-  docker-latest-logrotate \
-  docker-logrotate \
-  docker-selinux \
-  docker-engine-selinux \
-  docker-engine
-sudo dnf -y install dnf-plugins-core
-sudo dnf config-manager \
-  --add-repo \
-  https://download.docker.com/linux/fedora/docker-ce.repo
-sudo dnf install docker docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose docker-compose-plugin
 
 # Create Projects folder and clone GitHub projects
 if [ ! -d "$HOME/Projects" ]; then
