@@ -7,6 +7,6 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME"/.conf
 git clone https://github.com/arthurnunesc/dotfiles.git "$HOME"/.dotfiles
 
 # Synchronizes all dotfiles with stow
-cd "$HOME"/.dotfiles
+cd "$HOME"/.dotfiles || return
 stow */
-cd
+cd || return

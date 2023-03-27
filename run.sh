@@ -3,33 +3,22 @@
 # VARIABLES #
 
 hostname="fedora"
-hostname_desktop="fedora-desk"
-hostname_laptop="fedora-lap"
+hostname_desktop="fedora-desktop"
+hostname_laptop="fedora-laptop"
 
 dnf_apps=(
-  ffmpeg
-  gstreamer1-libav
-  util-linux-user
-  fuse-exfat
-  gnome-tweaks
-  dconf-editor
-  neofetch
-  rsms-inter-fonts
-  mozilla-fira-sans-fonts
-  jetbrains-mono-fonts
-  piper
-  libratbag-ratbagd
-  zsh
-  dash
+  ffmpeg gstreamer1-libav util-linux-user fuse-exfat
+  gnome-tweaks dconf-editor
+  rsms-inter-fonts cascadia-code-fonts mozilla-fira-sans-fonts jetbrains-mono-fonts
+  piper libratbag-ratbagd
+  zsh dash
+  kitty
   git
   stow
-  code
-  vim-enhanced
-  neovim python3-neovim
+  neofetch
+  code emacs vim-enhanced neovim
   python3 python3-pip
-  java-1.8.0-openjdk
-  java-11-openjdk
-  java-latest-openjdk
+  java-1.8.0-openjdk java-11-openjdk java-17-openjdk java-latest-openjdk
   nodejs
   rust cargo
 )
@@ -140,10 +129,7 @@ sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
 sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
 
 # Add RPM Fusion free and nonfree repos
-sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y -q
-
-# Add RPM Sphere repo
-sudo dnf install https://raw.githubusercontent.com/rpmsphere/noarch/master/r/rpmsphere-release-36-1.noarch.rpm -y -q
+sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-"$(rpm -E %fedora)".noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-"$(rpm -E %fedora)".noarch.rpm -y -q
 
 # Add flathub repo
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo

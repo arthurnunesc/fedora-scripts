@@ -9,7 +9,6 @@ else
   echo "Done."
 fi
 
-
 if grep -Fxq "fastestmirror=True" /etc/dnf/dnf.conf; then
   echo "fastestmirror variable was already set to True."
 else

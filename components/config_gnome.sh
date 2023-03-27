@@ -10,10 +10,10 @@ dconf write /org/gnome/shell/window-switcher/current-workspace-only false
 # Create Super + T shortcut for terminal
 dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']"
 dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/binding "'<Super>t'"
-dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/command "'gnome-terminal'"
-dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/name "'Open Terminal'"
+dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/command "'kitty'"
+dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/name "'Open Kitty terminal emulator'"
 
-# Change fonts to Zorin OS Default Fonts
+# Change fonts
 dconf write /org/gnome/desktop/interface/font-name "'Inter Regular 11'"
 dconf write /org/gnome/desktop/interface/document-font-name "'Sans Regular 11'"
 dconf write /org/gnome/desktop/interface/monospace-font-name "'Iosevka Regular 11'"
@@ -24,6 +24,11 @@ dconf write /system/locale/region "'en_BW.UTF-8'"
 
 # Turn on over-amplification
 dconf write /org/gnome/desktop/sound/allow-volume-above-100-percent true
+
+# Change touchpad configurations
+dconf write /org/gnome/desktop/peripherals/touchpad/natural-scroll true
+dconf write /org/gnome/desktop/peripherals/touchpad/two-finger-scrolling-enabled true
+dconf write /org/gnome/desktop/peripherals/touchpad/tap-to-click true
 
 # Making the PC not lock when it auto-locks
 # dconf write /org/gnome/desktop/screensaver/lock-enabled false
