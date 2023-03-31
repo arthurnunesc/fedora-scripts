@@ -40,7 +40,7 @@ flatpak_apps=(
   com.obsproject.Studio
   com.github.tchx84.Flatseal
   com.spotify.Client
-  com.discordapp.Discord
+  io.github.spacingbat3.webcord # Discord client that supports Wayland screenshare
 )
 flatpak_apps_desktop_only=(
   org.gnome.Boxes
