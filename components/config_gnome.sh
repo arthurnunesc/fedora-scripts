@@ -7,11 +7,21 @@ dconf write /org/gnome/desktop/wm/keybindings/switch-windows "['<Super>Tab', '<A
 dconf write /org/gnome/desktop/wm/keybindings/switch-windows-backward "['<Shift><Super>Tab', '<Shift><Alt>Tab']"
 dconf write /org/gnome/shell/window-switcher/current-workspace-only false
 
+# Switch Activate window menu to Alt+Shift+Space
+dconf write /org/gnome/desktop/wm/keybindings/activate-window-menu "['<Alt><Shift>space']"
+
+# Setting custom shortcuts
+dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/']"
+
 # Create Super + T shortcut for terminal
-dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']"
 dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/binding "'<Super>t'"
 dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/command "'kitty'"
 dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/name "'Open Kitty terminal emulator'"
+
+# Create Ulauncher shortcut
+dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/binding "'<Alt>Space'"
+dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/command "'ulauncher-toggle'"
+dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/name "'Open Ulauncher'"
 
 # Change fonts
 dconf write /org/gnome/desktop/interface/font-name "'Inter Regular 11'"

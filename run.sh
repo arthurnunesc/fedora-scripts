@@ -8,6 +8,7 @@ hostname_laptop="fedora-laptop"
 
 dnf_apps=(
   ffmpeg gstreamer1-libav util-linux-user fuse-exfat dnf-plugins-core
+  curl wget
   gnome-tweaks dconf-editor
   rsms-inter-fonts cascadia-code-fonts mozilla-fira-sans-fonts jetbrains-mono-fonts
   piper libratbag-ratbagd
@@ -16,7 +17,9 @@ dnf_apps=(
   git
   stow
   neofetch
-  code emacs vim-enhanced neovim
+  ulauncher wmctrl
+  ranger
+  code vim-enhanced wl-clipboard emacs
   python3 python3-pip
   java-1.8.0-openjdk java-11-openjdk java-17-openjdk java-latest-openjdk
   nodejs
@@ -36,9 +39,9 @@ flatpak_apps=(
   org.gimp.GIMP
   org.gabmus.hydrapaper # Outdated runtime
   nl.hjdskes.gcolor3
+  com.github.tchx84.Flatseal
   com.belmoussaoui.Obfuscate
   com.obsproject.Studio
-  com.github.tchx84.Flatseal
   com.spotify.Client
   io.github.spacingbat3.webcord # Discord client that supports Wayland screenshare
 )
@@ -143,6 +146,18 @@ flatpak remote-add --if-not-exists flathub-beta https://flathub.org/beta-repo/fl
 update_repos_and_apps
 
 install_apps
+
+# Install neovim as a appimage
+wget -q https://github.com/neovim/neovim/releases/download/stable/nvim.appimage -O "$HOME"/.local/bin/nvim.appimage
+
+# Installs TLDR
+pip install tldr
+
+# Configures clipboard for (n)vim usage
+set clipboard+=unnamedplus
+
+# Enables Ulauncher to start on boot
+systemctl --user enable --now ulauncher
 
 # Create Projects folder and clone GitHub projects
 if [ ! -d "$HOME/Projects" ]; then
