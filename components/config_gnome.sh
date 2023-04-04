@@ -69,3 +69,6 @@ dconf write /org/gnome/desktop/wm/preferences/button-layout "'close,minimize:app
 
 # Change GTK3 theme to Adwaita-dark
 dconf write /org/gnome/desktop/interface/gtk-theme "'Adwaita-dark'"
+
+# Change default terminal to kitty
+dconf write /org/gnome/desktop/applications/terminal/exec "'kitty'"

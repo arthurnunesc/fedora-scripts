@@ -153,9 +153,6 @@ wget -q https://github.com/neovim/neovim/releases/download/stable/nvim.appimage 
 # Installs TLDR
 pip install tldr
 
-# Configures clipboard for (n)vim usage
-set clipboard+=unnamedplus
-
 # Enables Ulauncher to start on boot
 systemctl --user enable --now ulauncher
 
