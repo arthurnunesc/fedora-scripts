@@ -161,7 +161,11 @@ pip install ruff-lsp
 pip install black pynvim
 pip install "black[jupyter]"
 
-# Create Projects folder and clone GitHub projects
+# Install spotifyd
+cargo install spotifyd --locked
+
+
+# Create Projects folder
 if [ ! -d "$HOME/Projects" ]; then
   mkdir "$HOME"/Projects
 fi
