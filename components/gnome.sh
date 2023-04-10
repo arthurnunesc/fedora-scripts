@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env dash
 
 # Switch Gnome's stock Alt+tab function to Windows'
 dconf write /org/gnome/desktop/wm/keybindings/switch-applications "['']"

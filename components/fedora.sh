@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env dash
 
 # Changes Fedora remote configurations so downloads are faster
 if grep -Fxq "max_parallel_downloads=10" /etc/dnf/dnf.conf; then
