@@ -9,7 +9,7 @@ dnf_apps=(
   gnome-tweaks dconf-editor
   rsms-inter-fonts mozilla-fira-sans-fonts
   libratbag-ratbagd
-  zsh dash kitty stow btop neofetch ranger
+  zsh dash kitty stow btop neofetch ranger ulauncher
   wmctrl wl-clipboard
   code vim-enhanced shellcheck devscripts-checkbashisms
   python3 python3-pip rust cargo java-1.8.0-openjdk java-11-openjdk java-17-openjdk java-latest-openjdk nodejs

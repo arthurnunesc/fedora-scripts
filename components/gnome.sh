@@ -26,22 +26,19 @@ dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/cus
 # Change fonts
 dconf write /org/gnome/desktop/interface/font-name "'Inter Regular 11'"
 dconf write /org/gnome/desktop/interface/document-font-name "'Sans Regular 11'"
-dconf write /org/gnome/desktop/interface/monospace-font-name "'Iosevka Regular 11'"
+dconf write /org/gnome/desktop/interface/monospace-font-name "'JetBrainsMono Nerd Font 11'"
 dconf write /org/gnome/desktop/wm/preferences/titlebar-font "'Inter Bold 11'"
 
 # Change format to Botswana(the same as Brazil but in English)
 dconf write /system/locale/region "'en_BW.UTF-8'"
 
-# Turn on over-amplification
-dconf write /org/gnome/desktop/sound/allow-volume-above-100-percent true
-
 # Change touchpad configurations
 dconf write /org/gnome/desktop/peripherals/touchpad/natural-scroll true
 dconf write /org/gnome/desktop/peripherals/touchpad/two-finger-scrolling-enabled true
 dconf write /org/gnome/desktop/peripherals/touchpad/tap-to-click true
-
-# Making the PC not lock when it auto-locks
-# dconf write /org/gnome/desktop/screensaver/lock-enabled false
+# Disable mouse acceleration
+dconf write /org/gnome/desktop/peripherals/mouse/accel-profile "'flat'"
+dconf write /org/gnome/desktop/peripherals/touchpad/natural-scroll true
 
 # Not show gnome tweaks welcome message
 dconf write /org/gnome/tweaks/show-extensions-notice false
@@ -52,23 +49,28 @@ dconf write /org/gnome/software/first-run false
 # Show weekday on clock
 dconf write /org/gnome/desktop/interface/clock-show-weekday true
 
-# Change scaling
-# dconf write /org/gnome/desktop/interface/text-scaling-factor "1.45"
-
 # Show battery percentage
 dconf write /org/gnome/desktop/interface/show-battery-percentage true
 
-# Disable acceleration
-dconf write /org/gnome/desktop/peripherals/mouse/accel-profile "'flat'"
-
-# Disable telemetry
-# dconf write /org/gnome/desktop/privacy/report-technical-problems false
-
 # Turn on minimize button and shuffle them to the right
-dconf write /org/gnome/desktop/wm/preferences/button-layout "'close,minimize:appmenu'"
-
-# Change GTK3 theme to Adwaita-dark
-dconf write /org/gnome/desktop/interface/gtk-theme "'Adwaita-dark'"
+dconf write /org/gnome/desktop/wm/preferences/button-layout "'close,minimize,maximize:appmenu'"
 
 # Change default terminal to kitty
 dconf write /org/gnome/desktop/applications/terminal/exec "'kitty'"
+
+# UNUSED CONFIGS #
+
+# # Change GTK3 theme to Adwaita-dark
+# dconf write /org/gnome/desktop/interface/gtk-theme "'Adwaita-dark'"
+
+# # Turn on over-amplification
+# dconf write /org/gnome/desktop/sound/allow-volume-above-100-percent true
+
+# # Disable telemetry
+# dconf write /org/gnome/desktop/privacy/report-technical-problems false
+
+# # Change scaling
+# dconf write /org/gnome/desktop/interface/text-scaling-factor "1.45"
+
+# # Making the PC not lock when it auto-locks
+# dconf write /org/gnome/desktop/screensaver/lock-enabled false
