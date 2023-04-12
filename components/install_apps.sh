@@ -3,16 +3,14 @@
 # VARIABLES #
 
 dnf_apps=(
-  https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-"$(rpm -E %fedora)".noarch.rpm
-  https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-"$(rpm -E %fedora)".noarch.rpm
-  ffmpeg gstreamer1-libav util-linux-user fuse-exfat dnf-plugins-core fd-find ripgrep openssl-devel curl wget git
+  ffmpeg gstreamer1-libav util-linux-user fuse-exfat dnf-plugins-core fd-find ripgrep ansible alsa-lib-devel openssl-devel curl wget git ssh
   gnome-tweaks dconf-editor
   rsms-inter-fonts mozilla-fira-sans-fonts
   libratbag-ratbagd
   zsh dash kitty stow btop neofetch ranger ulauncher
   wmctrl wl-clipboard
   code vim-enhanced shellcheck devscripts-checkbashisms
-  python3 python3-pip rust cargo java-1.8.0-openjdk java-11-openjdk java-17-openjdk java-latest-openjdk nodejs
+  python3 python3-pip make gcc go rust cargo java-1.8.0-openjdk java-11-openjdk java-17-openjdk java-latest-openjdk nodejs
   docker docker-ce docker-ce-cli 'containerd.io' docker-buildx-plugin docker-compose docker-compose-plugin
 )
 
@@ -28,12 +26,13 @@ flatpak_apps=(
   com.belmoussaoui.Obfuscate
   com.obsproject.Studio
   com.spotify.Client
+  com.slack.Slack
   io.github.spacingbat3.webcord # Discord client that supports Wayland screensharing
 )
 
+installed_apps="$(flatpak list) $(dnf list --installed | awk '{print $1}')"
 
 # TESTS #
-
 
 # FUNCTIONS #
 
@@ -50,7 +49,7 @@ update_repos_and_apps() {
 
 install_apps() {
   for app in "${dnf_apps[@]}"; do
-    if ! sudo dnf list --installed | grep -q "$app"; then
+    if ! echo "$installed_apps" | grep -q "$app"; then
       sudo dnf install -yq "$app"
       echo "package $app was installed."
     else
@@ -59,7 +58,7 @@ install_apps() {
   done
 
   for app in "${flatpak_apps[@]}"; do
-    if ! flatpak list | grep -q "$app"; then
+    if ! echo "$installed_apps" | grep -q "$app"; then
       flatpak install flathub -y --noninteractive "$app"
       echo "package $app was installed."
     else
@@ -68,8 +67,10 @@ install_apps() {
   done
 }
 
-
 # EXECUTION
+
+# Add RPMFusion repos
+sudo dnf install -yq https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-"$(rpm -E %fedora)".noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-"$(rpm -E %fedora)".noarch.rpm
 
 # Add VSCode repo
 sudo rpm --quiet --import https://packages.microsoft.com/keys/microsoft.asc
