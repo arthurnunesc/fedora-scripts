@@ -64,7 +64,7 @@ dconf write /org/gnome/desktop/applications/terminal/exec "'kitty'"
 # dconf write /org/gnome/desktop/interface/gtk-theme "'Adwaita-dark'"
 
 # # Turn on over-amplification
-# dconf write /org/gnome/desktop/sound/allow-volume-above-100-percent true
+# dconf write /org/gnome/desktop/sound/allow-volume-above-100-percent false
 
 # # Disable telemetry
 # dconf write /org/gnome/desktop/privacy/report-technical-problems false

@@ -40,7 +40,7 @@ echo "syncing dotfiles, configs and fonts..."
 sh ./components/dotfiles.sh
 
 echo "configuring git variables..."
-sh ./components/config_git.sh
+sh ./components/git.sh
 
 echo "setting zsh as default shell..."
 sudo usermod --shell /bin/zsh "$USER"
