@@ -14,13 +14,21 @@ if [ "$1" = "linux" ]; then
   if [ ! -d "$HOME"/.local/share/icons ]; then
     mkdir -p "$HOME"/.local/share/icons
   fi
+  cd "$HOME"/.dotfiles/linux || return
+  stow */ -t "$HOME"
+  cd || return
 else
   if [ ! -d "$HOME"/Library/Fonts ]; then
     mkdir -p "$HOME"/Library/Fonts
   fi
+  cd "$HOME"/.dotfiles/mac || return
+  stow */ -t "$HOME"
+  cd || return
 fi
 
+rm -rf "$HOME"/.zshrc
+
 # Synchronizes all dotfiles with stow
-cd "$HOME"/.dotfiles || return
-stow */
+cd "$HOME"/.dotfiles/both || return
+stow */ -t "$HOME"
 cd || return

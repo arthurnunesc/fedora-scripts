@@ -88,6 +88,9 @@ update_everything
 
 install_apps
 
+# Make ulauncher start on boot
+systemctl --user enable --now ulauncher
+
 # Install neovim as a appimage
 if [ -f "$HOME/.local/bin/nvim.appimage" ]; then
   echo "package neovim is already installed."
