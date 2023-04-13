@@ -3,7 +3,7 @@
 machine=$1
 
 if [ "$machine" = "linux" ]; then
-  echo "running linux config files now."
+  echo "running linux config files..."
   echo "configuring gnome..."
   sh ./components/gnome.sh
   echo "configuring python..."
@@ -21,7 +21,7 @@ if [ "$machine" = "linux" ]; then
     chsh -s /bin/zsh
   fi
 elif [ "$machine" = "mac" ]; then
-  echo "running macos config files now."
+  echo "running macos config files..."
   echo "configuring python..."
   sh ./components/python.sh
   echo "configuring git variables..."
