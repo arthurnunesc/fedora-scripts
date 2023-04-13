@@ -7,6 +7,8 @@ It detects if it is being executed on a Linux machine(personal computer) or a Ma
 
 ## usage
 
-`./install.sh` to install and configure everything.
+`./iscreepchee.sh "install and config"` to install and configure everything.
 
-`./config.sh` to only configure everything.
+`./iscreepchee.sh config` to only configure everything.
+
+`./iscreepchee.sh install`
