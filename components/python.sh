@@ -15,4 +15,4 @@ echo "$pip3_apps" | tr ' ' '\n' | while read -r item; do
   pip3 install -Uq "$item"
 done
 
-sh ./components/conda-auto-install.sh
+# sh ./components/conda-auto-install.sh
