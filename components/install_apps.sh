@@ -1,34 +1,10 @@
-#!/usr/bin/env bash
+#!/usr/bin/env dash
 
 # VARIABLES #
 
-dnf_apps=(
-  ffmpeg gstreamer1-libav util-linux-user fuse-exfat dnf-plugins-core fd-find ripgrep ansible alsa-lib-devel openssl-devel curl wget git ssh
-  gnome-tweaks dconf-editor
-  rsms-inter-fonts mozilla-fira-sans-fonts
-  libratbag-ratbagd
-  zsh dash kitty stow btop neofetch ranger ulauncher
-  wmctrl wl-clipboard
-  code vim-enhanced shellcheck devscripts-checkbashisms
-  python3 python3-pip make gcc go rust cargo java-1.8.0-openjdk java-11-openjdk java-17-openjdk java-latest-openjdk nodejs
-  docker docker-ce docker-ce-cli 'containerd.io' docker-buildx-plugin docker-compose docker-compose-plugin
-)
+dnf_apps="ffmpeg gstreamer1-libav util-linux-user fuse-exfat dnf-plugins-core fd-find ripgrep ansible alsa-lib-devel openssl-devel curl wget git ssh gnome-tweaks dconf-editor rsms-inter-fonts mozilla-fira-sans-fonts libratbag-ratbagd zsh dash kitty stow btop neofetch ranger ulauncher wmctrl wl-clipboard code vim-enhanced shellcheck devscripts-checkbashisms python3 python3-pip make gcc go rust cargo java-1.8.0-openjdk java-11-openjdk java-17-openjdk java-latest-openjdk nodejs docker-ce docker-ce-cli 'containerd.io' docker-buildx-plugin docker-compose docker-compose-plugin"
 
-flatpak_apps=(
-  md.obsidian.Obsidian
-  com.transmissionbt.Transmission
-  org.gnome.Extensions
-  org.gnome.SoundRecorder
-  org.gnome.Shotwell # Outdated runtime
-  org.gimp.GIMP
-  nl.hjdskes.gcolor3
-  com.github.tchx84.Flatseal
-  com.belmoussaoui.Obfuscate
-  com.obsproject.Studio
-  com.spotify.Client
-  com.slack.Slack
-  io.github.spacingbat3.webcord # Discord client that supports Wayland screensharing
-)
+flatpak_apps="md.obsidian.Obsidian com.transmissionbt.Transmission org.gnome.Extensions org.gnome.SoundRecorder org.gnome.Shotwell org.gimp.GIMP nl.hjdskes.gcolor3 com.github.tchx84.Flatseal com.belmoussaoui.Obfuscate com.obsproject.Studio com.spotify.Client com.slack.Slack io.github.spacingbat3.webcord"
 
 installed_apps="$(flatpak list) $(dnf list --installed | awk '{print $1}')"
 
@@ -48,7 +24,7 @@ update_repos_and_apps() {
 }
 
 install_apps() {
-  for app in "${dnf_apps[@]}"; do
+  echo "$dnf_apps" | tr ' ' '\n' | while read -r app; do
     if ! echo "$installed_apps" | grep -q "$app"; then
       sudo dnf install -yq "$app"
       echo "package $app was installed."
@@ -57,7 +33,7 @@ install_apps() {
     fi
   done
 
-  for app in "${flatpak_apps[@]}"; do
+  echo "$flatpak_apps" | tr ' ' '\n' | while read -r app; do
     if ! echo "$installed_apps" | grep -q "$app"; then
       flatpak install flathub -y --noninteractive "$app"
       echo "package $app was installed."
