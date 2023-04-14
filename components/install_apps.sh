@@ -64,6 +64,9 @@ update_everything
 
 install_apps
 
+# Install Development Tools to compile some apps
+sudo dnf groupinstall "Development Tools"
+
 # Make ulauncher start on boot
 systemctl --user enable --now ulauncher
 
