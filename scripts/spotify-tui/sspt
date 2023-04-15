@@ -1,0 +1,7 @@
+#!/bin/sh
+
+killall -q spotifyd
+
+spotifyd
+
+spt

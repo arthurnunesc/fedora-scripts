@@ -2,7 +2,7 @@
 
 # VARIABLES #
 
-dnf_apps="ffmpeg gstreamer1-libav util-linux-user fuse-exfat dnf-plugins-core fd-find ripgrep ansible alsa-lib-devel openssl-devel curl wget git ssh gnome-tweaks dconf-editor rsms-inter-fonts mozilla-fira-sans-fonts libratbag-ratbagd zsh dash kitty stow btop neofetch ranger ulauncher wmctrl wl-clipboard code vim-enhanced shellcheck devscripts-checkbashisms python3 python3-pip make gcc go rust cargo java-1.8.0-openjdk java-11-openjdk java-17-openjdk java-latest-openjdk nodejs docker-ce docker-ce-cli 'containerd.io' docker-buildx-plugin docker-compose docker-compose-plugin"
+dnf_apps="ffmpeg gstreamer1-libav util-linux-user fuse-exfat dnf-plugins-core fd-find ripgrep ansible alsa-lib-devel openssl-devel curl wget git ssh gnome-tweaks dconf-editor rsms-inter-fonts mozilla-fira-sans-fonts libratbag-ratbagd zsh dash kitty stow btop neofetch ranger ulauncher wmctrl wl-clipboard code vim-enhanced shellcheck devscripts-checkbashisms python3 python3-pip make gcc go rust cargo java-1.8.0-openjdk java-11-openjdk java-17-openjdk java-latest-openjdk nodejs docker-ce docker-ce-cli 'containerd.io' docker-buildx-plugin docker-compose docker-compose-plugin qt5-qtbase qt5-qtbase-gui qt5-qtsvg qt5-qtdeclarative qt5-qtquickcontrols"
 
 flatpak_apps="md.obsidian.Obsidian com.transmissionbt.Transmission org.gnome.Extensions org.gnome.SoundRecorder org.gnome.Shotwell org.gimp.GIMP nl.hjdskes.gcolor3 com.github.tchx84.Flatseal com.belmoussaoui.Obfuscate com.obsproject.Studio com.spotify.Client com.slack.Slack io.github.spacingbat3.webcord"
 
@@ -65,7 +65,7 @@ update_everything
 install_apps
 
 # Install Development Tools to compile some apps
-sudo dnf groupinstall "Development Tools"
+sudo dnf groupinstall -yq "Development Tools"
 
 # Make ulauncher start on boot
 systemctl --user enable --now ulauncher
@@ -75,4 +75,11 @@ if [ -f "$HOME/.local/bin/nvim.appimage" ]; then
   echo "package neovim is already installed."
 else
   wget -q https://github.com/neovim/neovim/releases/download/stable/nvim.appimage -O "$HOME"/.local/bin/nvim.appimage
+fi
+
+if [ -f "$HOME/.local/bin/sspt" ]; then
+  echo "script sspt is already in user bin folder."
+else
+  cp ./scripts/spotify-tui/sspt "$HOME"/.local/bin/sspt
+  echo "script sspt was copied to the user bin folder."
 fi
