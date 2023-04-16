@@ -42,26 +42,23 @@ dconf write /org/gnome/desktop/peripherals/touchpad/natural-scroll true
 
 # Not show gnome tweaks welcome message
 dconf write /org/gnome/tweaks/show-extensions-notice false
-
 # Not show gnome software welcome message
 dconf write /org/gnome/software/first-run false
 
 # Show weekday on clock
 dconf write /org/gnome/desktop/interface/clock-show-weekday true
-
 # Show battery percentage
 dconf write /org/gnome/desktop/interface/show-battery-percentage true
-
 # Turn on minimize button and shuffle them to the right
 dconf write /org/gnome/desktop/wm/preferences/button-layout "'close,minimize,maximize:appmenu'"
-
 # Change default terminal to kitty
 dconf write /org/gnome/desktop/applications/terminal/exec "'kitty'"
 
-# UNUSED CONFIGS #
+dconf write /org/gnome/desktop/interface/color-scheme "'prefer-dark'"
+# Change GTK3 theme to Adwaita-dark
+dconf write /org/gnome/desktop/interface/gtk-theme "'Adwaita-dark'"
 
-# # Change GTK3 theme to Adwaita-dark
-# dconf write /org/gnome/desktop/interface/gtk-theme "'Adwaita-dark'"
+# UNUSED CONFIGS #
 
 # # Turn on over-amplification
 # dconf write /org/gnome/desktop/sound/allow-volume-above-100-percent false
