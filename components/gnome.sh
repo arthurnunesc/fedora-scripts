@@ -3,8 +3,8 @@
 # Switch Gnome's stock Alt+tab function to Windows'
 dconf write /org/gnome/desktop/wm/keybindings/switch-applications "['']"
 dconf write /org/gnome/desktop/wm/keybindings/switch-applications-backward "['']"
-dconf write /org/gnome/desktop/wm/keybindings/switch-windows "['<Super>Tab', '<Alt>Tab']"
-dconf write /org/gnome/desktop/wm/keybindings/switch-windows-backward "['<Shift><Super>Tab', '<Shift><Alt>Tab']"
+dconf write /org/gnome/desktop/wm/keybindings/switch-windows "['<Super>Tab', '<Ctrl>Tab']"
+dconf write /org/gnome/desktop/wm/keybindings/switch-windows-backward "['<Shift><Super>Tab', '<Shift><Ctrl>Tab']"
 dconf write /org/gnome/shell/window-switcher/current-workspace-only false
 
 # Switch Activate window menu to Alt+Shift+Space
@@ -14,7 +14,7 @@ dconf write /org/gnome/desktop/wm/keybindings/activate-window-menu "['<Alt><Shif
 dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/']"
 
 # Create Super + T shortcut for terminal
-dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/binding "'<Super>t'"
+dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/binding "'<Ctrl>t'"
 dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/command "'kitty'"
 dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/name "'Open Kitty terminal emulator'"
 
@@ -57,6 +57,9 @@ dconf write /org/gnome/desktop/applications/terminal/exec "'kitty'"
 dconf write /org/gnome/desktop/interface/color-scheme "'prefer-dark'"
 # Change GTK3 theme to Adwaita-dark
 dconf write /org/gnome/desktop/interface/gtk-theme "'Adwaita-dark'"
+
+# Change locking key
+dconf write /org/gnome/settings-daemon/plugins/media-keys/screensaver "'<Alt><Ctrl>q'"
 
 # UNUSED CONFIGS #
 
