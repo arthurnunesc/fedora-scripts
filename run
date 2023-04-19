@@ -1,0 +1,22 @@
+#!/usr/bin/env dash
+
+
+echo "welcome! starting now."
+
+if [ "$1" = "both" ]; then
+  sh ./install.sh
+  sh ./config.sh
+elif [ "$1" = "install" ]; then
+  sh ./install.sh
+elif [ "$1" = "config" ]; then
+  sh ./config.sh
+else
+  echo "please choose an option"
+  exit 1
+fi
+
+echo ""
+read -rp "do you want to reboot the system now? [y/N] " OPTION
+if [ "$OPTION" = 'y' ] || [ "$OPTION" = 'Y' ]; then
+  sudo reboot
+fi

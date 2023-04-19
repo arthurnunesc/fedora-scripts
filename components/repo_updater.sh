@@ -12,8 +12,14 @@ fi
 
 # Check if the package is already cloned
 if [ -d "$pkg_dir" ]; then
-  # echo "package was there, trying to pull new changes..."
-  :
+  if [ -d "$pkg_dir/.git" ]; then
+    # echo "package was there, trying to pull new changes..."
+    :
+  else
+    # echo "package was there but it was not a git repository, removing it and cloning again..."
+    rm -rf "$pkg_dir"
+    git clone -q "$pkg_repo" "$pkg_dir"
+  fi
 else
   # echo "package was not there, cloning repository..."
   git clone -q "$pkg_repo" "$pkg_dir"
@@ -38,3 +44,6 @@ git pull -q origin "$branch"
 # else
 #   echo "package was already up-to-date."
 # fi
+
+# Get back to the previous working directory
+cd - || exit 1

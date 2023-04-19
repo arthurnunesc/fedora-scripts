@@ -45,6 +45,7 @@ install_apps() {
 
 # EXECUTION
 
+echo "adding repos..."
 # Add RPMFusion repos
 sudo dnf install -yq https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-"$(rpm -E %fedora)".noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-"$(rpm -E %fedora)".noarch.rpm
 
@@ -60,8 +61,10 @@ sudo dnf config-manager -yq --add-repo https://download.docker.com/linux/fedora/
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 flatpak remote-add --if-not-exists flathub-beta https://flathub.org/beta-repo/flathub-beta.flatpakrepo
 
+echo "updating everything..."
 update_everything
 
+echo "installing apps..."
 install_apps
 
 # Install Development Tools to compile some apps

@@ -1,32 +1,27 @@
 #!/usr/bin/env dash
 
-# Switch Gnome's stock Alt+tab function to Windows'
+# Switch Gnome's stock Alt+tab function to MacOS'
 dconf write /org/gnome/desktop/wm/keybindings/switch-applications "['']"
 dconf write /org/gnome/desktop/wm/keybindings/switch-applications-backward "['']"
-dconf write /org/gnome/desktop/wm/keybindings/switch-windows "['<Super>Tab', '<Ctrl>Tab']"
-dconf write /org/gnome/desktop/wm/keybindings/switch-windows-backward "['<Shift><Super>Tab', '<Shift><Ctrl>Tab']"
+dconf write /org/gnome/desktop/wm/keybindings/switch-windows "['<Ctrl>Tab']"
+dconf write /org/gnome/desktop/wm/keybindings/switch-windows-backward "['<Shift><Ctrl>Tab']"
 dconf write /org/gnome/shell/window-switcher/current-workspace-only false
 
 # Switch Activate window menu to Alt+Shift+Space
 dconf write /org/gnome/desktop/wm/keybindings/activate-window-menu "['<Alt><Shift>space']"
 
 # Setting custom shortcuts
-dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/']"
+dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']"
 
 # Create Super + T shortcut for terminal
 dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/binding "'<Ctrl>t'"
 dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/command "'kitty'"
 dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/name "'Open Kitty terminal emulator'"
 
-# Create Ulauncher shortcut
-dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/binding "'<Alt>Space'"
-dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/command "'ulauncher-toggle'"
-dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/name "'Open Ulauncher'"
-
 # Change fonts
 dconf write /org/gnome/desktop/interface/font-name "'Inter Regular 11'"
 dconf write /org/gnome/desktop/interface/document-font-name "'Sans Regular 11'"
-dconf write /org/gnome/desktop/interface/monospace-font-name "'JetBrainsMono Nerd Font 11'"
+dconf write /org/gnome/desktop/interface/monospace-font-name "'Fira Code 11'"
 dconf write /org/gnome/desktop/wm/preferences/titlebar-font "'Inter Bold 11'"
 
 # Change format to Botswana(the same as Brazil but in English)
@@ -54,9 +49,12 @@ dconf write /org/gnome/desktop/wm/preferences/button-layout "'close,minimize,max
 # Change default terminal to kitty
 dconf write /org/gnome/desktop/applications/terminal/exec "'kitty'"
 
-dconf write /org/gnome/desktop/interface/color-scheme "'prefer-dark'"
-# Change GTK3 theme to Adwaita-dark
-dconf write /org/gnome/desktop/interface/gtk-theme "'Adwaita-dark'"
+# Light theme
+dconf write /org/gnome/desktop/interface/gtk-theme "'Adwaita'"
+
+# # Dark theme
+# dconf write /org/gnome/desktop/interface/color-scheme "'prefer-dark'"
+# dconf write /org/gnome/desktop/interface/gtk-theme "'Adwaita-dark'"
 
 # Change locking key
 dconf write /org/gnome/settings-daemon/plugins/media-keys/screensaver "'<Alt><Ctrl>q'"

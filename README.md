@@ -1,14 +1,13 @@
-# iscreepchee
-Pronounced like it is read, tries to mimic the way Brazilians pronounce the word "script".
+# fedora-scripts
 
-This is a compilation of scripts written to help me install all my utilities, tools and programs plus their respective configs on the computers I have access to.
+This is a compilation of scripts written to help me install all my utilities, tools and programs plus their respective configs on my personal computers that run Fedora.
 
-It detects if it is being executed on a Linux machine(personal computer) or a MacOS machine(42 School computer) and runs components accordingly(ie. if on a 42 computer, doesn't run any sudo commands or Linux specific scripts).
+All of the scripts are POSIX compliants and should work on any POSIX compliant shell(I use dash).
 
 ## usage
 
-`./iscreepchee.sh "install and config"` to install and configure everything.
+`./run both` to both install and configure everything.
 
-`./iscreepchee.sh config` to only configure everything.
+`./run config` to only configure everything.
 
-`./iscreepchee.sh install`
+`./run install`
