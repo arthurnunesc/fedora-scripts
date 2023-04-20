@@ -33,7 +33,7 @@ dconf write /org/gnome/desktop/peripherals/touchpad/two-finger-scrolling-enabled
 dconf write /org/gnome/desktop/peripherals/touchpad/tap-to-click true
 # Disable mouse acceleration
 dconf write /org/gnome/desktop/peripherals/mouse/accel-profile "'flat'"
-dconf write /org/gnome/desktop/peripherals/touchpad/natural-scroll true
+dconf write /org/gnome/desktop/peripherals/mouse/natural-scroll true
 
 # Not show gnome tweaks welcome message
 dconf write /org/gnome/tweaks/show-extensions-notice false
