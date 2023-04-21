@@ -11,12 +11,19 @@ dconf write /org/gnome/shell/window-switcher/current-workspace-only false
 dconf write /org/gnome/desktop/wm/keybindings/activate-window-menu "['<Alt><Shift>space']"
 
 # Setting custom shortcuts
-dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']"
+dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/']"
 
 # Create Super + T shortcut for terminal
 dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/binding "'<Ctrl>t'"
 dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/command "'kitty'"
 dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/name "'Open Kitty terminal emulator'"
+# Create Ulauncher shortcut
+dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/binding "'<Ctrl>space'"
+dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/command "'ulauncher-toggle'"
+dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/name "'Open Ulauncher'"
+
+# Swaps left alt and left ctrl
+dconf write /org/gnome/desktop/input-sources/xkb-options "['ctrl:swap_lalt_lctl']"
 
 # Change fonts
 dconf write /org/gnome/desktop/interface/font-name "'Inter Regular 11'"
