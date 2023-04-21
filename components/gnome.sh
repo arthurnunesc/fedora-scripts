@@ -1,4 +1,4 @@
-#!/usr/bin/env dash
+#!/usr/bin/env sh
 
 # Switch Gnome's stock Alt+tab function to MacOS'
 dconf write /org/gnome/desktop/wm/keybindings/switch-applications "['']"

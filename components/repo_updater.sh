@@ -1,4 +1,4 @@
-#!/usr/bin/env dash
+#!/usr/bin/env sh
 
 # Clone or update the a repository to a local directory
 pkg_repo="$1"

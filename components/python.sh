@@ -1,4 +1,4 @@
-#!/usr/bin/env dash
+#!/usr/bin/env sh
 
 pip3_apps="pip setuptools tldr norminette ruff-lsp black pynvim black[jupyter] black[d]"
 

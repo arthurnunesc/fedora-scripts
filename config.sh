@@ -1,4 +1,4 @@
-#!/usr/bin/env dash
+#!/usr/bin/env sh
 
 echo "running linux config files..."
 echo "configuring gnome..."
