@@ -69,6 +69,9 @@ install_apps
 
 # Install Development Tools to compile some apps
 sudo dnf groupinstall -yq "Development Tools"
+sudo dnf install -yq gstreamer1-plugins-{bad-\*,good-\*,base} gstreamer1-plugin-openh264 gstreamer1-libav --exclude=gstreamer1-plugins-bad-free-devel
+sudo dnf install -yq lame\* --exclude=lame-devel
+sudo dnf group upgrade -yq --with-optional Multimedia
 
 # Make ulauncher start on boot
 systemctl --user enable --now ulauncher
