@@ -16,7 +16,7 @@ else
 fi
 
 echo ""
-read -rp "do you want to reboot the system now? [y/N] " OPTION
+read -r "do you want to reboot the system now? [y/N] " OPTION
 if [ "$OPTION" = 'y' ] || [ "$OPTION" = 'Y' ]; then
   sudo reboot
 fi
