@@ -1,16 +1,14 @@
 #!/usr/bin/env sh
 
-# VARIABLES #
+### VARIABLES ###
 
-dnf_apps="ffmpeg gstreamer1-libav util-linux-user fuse-exfat dnf-plugins-core fzf fd-find ripgrep ansible alsa-lib-devel openssl-devel cmake gcc-c++ curl wget git ssh gnome-tweaks dconf-editor rsms-inter-fonts mozilla-fira-sans-fonts libratbag-ratbagd zsh dash kitty stow btop neofetch ranger ulauncher wmctrl wl-clipboard fira-code-fonts jetbrains-mono-fonts code vim-enhanced shellcheck devscripts-checkbashisms python3 python3-pip conda make gcc go rust cargo java-1.8.0-openjdk java-11-openjdk java-17-openjdk java-latest-openjdk nodejs docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose docker-compose-plugin qt5-qtbase qt5-qtbase-gui qt5-qtsvg qt5-qtdeclarative qt5-qtquickcontrols"
+dnf_apps="ffmpeg gstreamer1-libav util-linux-user fuse-exfat dnf-plugins-core fzf fd-find ripgrep ansible alsa-lib-devel openssl-devel cmake gcc-c++ curl wget git ssh gnome-tweaks dconf-editor rsms-inter-fonts mozilla-fira-sans-fonts libratbag-ratbagd zsh dash kitty btop neofetch ranger ulauncher wmctrl wl-clipboard fira-code-fonts jetbrains-mono-fonts code vim-enhanced shellcheck devscripts-checkbashisms python3 python3-pip conda make gcc go rust cargo java-1.8.0-openjdk java-11-openjdk java-17-openjdk java-latest-openjdk nodejs docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose docker-compose-plugin qt5-qtbase qt5-qtbase-gui qt5-qtsvg qt5-qtdeclarative qt5-qtquickcontrols"
 
 flatpak_apps="md.obsidian.Obsidian com.transmissionbt.Transmission org.gnome.Extensions org.gnome.SoundRecorder org.gnome.Shotwell org.gimp.GIMP nl.hjdskes.gcolor3 com.github.tchx84.Flatseal com.belmoussaoui.Obfuscate com.obsproject.Studio com.spotify.Client com.slack.Slack io.github.spacingbat3.webcord"
 
 installed_apps="$(flatpak list) $(dnf list --installed | awk '{print $1}')"
 
-# TESTS #
-
-# FUNCTIONS #
+### FUNCTIONS ###
 
 update_everything() {
   sudo dnf update -yq
@@ -43,7 +41,7 @@ install_apps() {
   done
 }
 
-# EXECUTION
+### EXECUTION ###
 
 echo "adding repos..."
 # Add RPMFusion repos
@@ -76,7 +74,15 @@ sudo dnf group upgrade -yq --with-optional Multimedia
 # Make ulauncher start on boot
 systemctl --user enable --now ulauncher
 
-# Install neovim as a appimage
+# Installing chezmoi on user binaries folder
+if [ -f "$HOME/.local/bin/chezmoi" ]; then
+  echo "package chezmoi is already installed."
+else
+  echo "installing chezmoi."
+  sh -c "$(curl -fsLS get.chezmoi.io)" -- -b $HOME/.local/bin
+  fi
+
+# Install neovim as an appimage
 if [ -f "$HOME/.local/bin/nvim.appimage" ]; then
   echo "package neovim is already installed."
 else
