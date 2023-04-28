@@ -31,9 +31,9 @@ install_dnf_pkgs_from_string() {
    echo "$1" | tr ' ' '\n' | while read -r app; do
     if ! echo "$installed_dnf_apps" | grep -q "$app"; then
       sudo dnf install -yq "$app" > /dev/null 2>&1
-      printf "\t\tpackage \033[44m%s\033[0m was installed.\n" "$app" 
+      printf "\t\tpackage \033[34m%s\033[0m was installed.\n" "$app" 
     else
-      printf "\t\tpackage \033[44m%s\033[0m is already installed.\n" "$app" 
+      printf "\t\tpackage \033[34m%s\033[0m is already installed.\n" "$app" 
     fi
   done
 }
@@ -45,9 +45,9 @@ install_flatpak_apps_from_string() {
    echo "$1" | tr ' ' '\n' | while read -r app; do
     if !  echo "$installed_flatpak_apps" | grep -q "$app"; then
       flatpak install flathub -y --noninteractive "$app" > /dev/null 2>&1
-      printf "\t\tpackage \033[46m%s\033[0m was installed.\n" "$app"
+      printf "\t\tpackage \033[36m%s\033[0m was installed.\n" "$app"
     else
-      printf "\t\tpackage \033[46m%s\033[0m is already installed.\n" "$app" 
+      printf "\t\tpackage \033[36m%s\033[0m is already installed.\n" "$app" 
     fi
   done
 }
