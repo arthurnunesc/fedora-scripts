@@ -1,0 +1,56 @@
+#!/usr/bin/env sh
+
+# Clones or updates a repository to the specified directory
+# Usage: ./repo_updater.sh <repository> <directory> <branch(optional)>
+# Branch defaults to main if not specified
+# ATTENTION: If given a directory that is not a git repository, it will be deleted.
+if [ -z "$1" ] || [ -z "$2" ]; then
+  echo "Usage: ./repo_updater.sh <repository> <directory> <branch(optional)>"
+  exit 1
+fi
+
+pkg_repo="$1"
+pkg_dir="$2"
+
+if [ -z "$3" ]; then
+  branch="main"
+else
+  branch="$3"
+fi
+
+# Check if the package is already cloned
+if [ -d "$pkg_dir" ]; then
+  if [ -d "$pkg_dir/.git" ]; then
+    echo "package was there, trying to pull new changes..."
+  else
+    echo "package was there but it was not a git repository, removing it and cloning again..."
+    rm -rf "$pkg_dir"
+    git clone -q "$pkg_repo" "$pkg_dir"
+  fi
+else
+  echo "package was not there, cloning repository..."
+  git clone -q "$pkg_repo" "$pkg_dir"
+fi
+
+cd "$pkg_dir" || exit 1
+
+# Get the current commit hash of the local repository
+current_commit=$(git rev-parse HEAD)
+echo "current commit: $current_commit"
+
+# Pull the latest changes from the remote repository
+git pull -q origin "$branch"
+
+# Get the latest commit hash of the local repository.
+latest_commit=$(git rev-parse HEAD)
+echo "latest commit: $latest_commit"
+
+# Compare the current commit hash with the latest commit hash.
+if [ "$current_commit" != "$latest_commit" ]; then
+  echo "package update was available, the changes were pulled."
+else
+  echo "package was already up-to-date."
+fi
+
+# Get back to the previous working directory
+cd - || exit 1
