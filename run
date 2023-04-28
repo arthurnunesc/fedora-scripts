@@ -1,22 +1,25 @@
 #!/usr/bin/env sh
 
 
-echo "welcome! starting now."
+printf "\n\033[36mwelcome! starting now.\033[0m\n\n"
 
 if [ "$1" = "both" ]; then
+  printf "\033[32minstalling and configuring everything...\033[0m\n"
   sh ./install.sh
   sh ./config.sh
 elif [ "$1" = "install" ]; then
+  printf "\033[32monly running installing scripts...\033[0m\n"
   sh ./install.sh
 elif [ "$1" = "config" ]; then
+  printf "\033[32monly running configuration scripts...\033[0m\n"
   sh ./config.sh
 else
-  echo "please choose an option"
+  printf "\033[33mplease rerun the command with an option:\033[0m [install/config/both]\n"
   exit 1
 fi
 
-echo "do you want to reboot the system now? [y/N] "
-read -r option
+printf "\033[33mdo you want to reboot the system now?\033[0m [y/N]\n"
+read option
 if [ "$option" = 'y' ] || [ "$option" = 'Y' ]; then
   sudo reboot
 fi

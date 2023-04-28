@@ -2,17 +2,17 @@
 
 # Changes Fedora remote configurations so downloads are faster
 if grep -Fxq "max_parallel_downloads=10" /etc/dnf/dnf.conf; then
-  echo "max_parallel_downloads variable was already set to 10."
+  printf "\t\tmax_parallel_downloads variable was already set to 10.\n"
 else
-  echo "Changing Max Parallel Downloads variable to 10..."
+  printf "\t\tchanging max_parallel_downloads variable to 10...\n"
   echo "max_parallel_downloads=10" | sudo tee -a /etc/dnf/dnf.conf
-  echo "Done."
+  printf "\t\tdone.\n"
 fi
 
 if grep -Fxq "fastestmirror=True" /etc/dnf/dnf.conf; then
-  echo "fastestmirror variable was already set to True."
+  printf "\t\tfastestmirror variable was already set to True.\n"
 else
-  echo "Changing Fastest Mirror variable to True..."
+  printf "\t\tchanging fastestmirror variable to True...\n"
   echo "fastestmirror=True" | sudo tee -a /etc/dnf/dnf.conf
-  echo "Done."
+  printf "\t\tdone.\n"
 fi
