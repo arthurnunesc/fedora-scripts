@@ -45,9 +45,9 @@ install_flatpak_apps_from_string() {
   echo "$1" | tr ' ' '\n' | while read -r app; do
     if ! echo "$installed_flatpak_apps" | grep -q "$app"; then
       flatpak install flathub -y --noninteractive "$app" > /dev/null 2>&1
-      printf "\t\tpackage \033[36m%s\033[0m was installed.\n" "$app"
+      printf "\t\tpackage \033[34m%s\033[0m was installed.\n" "$app"
     else
-      printf "\t\tpackage \033[36m%s\033[0m is already installed.\n" "$app" 
+      printf "\t\tpackage \033[34m%s\033[0m is already installed.\n" "$app" 
     fi
   done
 }
@@ -73,7 +73,7 @@ flatpak remote-add --if-not-exists flathub-beta https://flathub.org/beta-repo/fl
 printf "\t- updating everything...\n"
 update_everything
 
-printf "\n\t\033[34m[ dnf - start ]\033[0m\n"
+printf "\n\t\033[36m[ dnf - start ]\033[0m\n"
 printf "\t- installing codecs, utils and dependencies...\n"
 install_dnf_pkgs_from_string "$dnf_pkgs_codecs_and_utils"
 sudo dnf install -yq gstreamer1-plugins-good gstreamer1-plugins-base --exclude=gstreamer1-plugins-bad-free-devel
@@ -88,27 +88,30 @@ printf "\t- installing devops tools...\n"
 install_dnf_pkgs_from_string "$dnf_pkgs_devops"
 printf "\t- installing languages envs and their packages managers...\n"
 install_dnf_pkgs_from_string "$dnf_pkgs_langs"
-printf "\t\033[34m[ dnf - end ]\033[0m\n"
+printf "\t\033[35m[ dnf - end ]\033[0m\n"
 
-printf "\n\t - installing flatpak apps...\n"
+printf "\n\t\033[36m[ flatpak - start ]\033[0m\n"
+printf "\t - installing flatpak apps...\n"
 install_flatpak_apps_from_string "$flatpak_apps"
-
+printf "\t\033[35m[ flatpak - end ]\033[0m\n"
 
 # Make ulauncher start on boot
 systemctl --user enable --now ulauncher
 
+printf "\n\t\033[36m[ manual installations - start ]\033[0m\n"
 # Installing chezmoi on user binaries folder
 if [ -f "$HOME/.local/bin/chezmoi" ]; then
-  printf "\t\tpackage chezmoi is already installed.\n"
+  printf "\t\tpackage \033[34mchezmoi\033[0m\n is already installed.\n"
 else
-  printf "\t\tinstalling chezmoi.\n"
-  sh -c "$(curl -fsLS get.chezmoi.io)" -- -b $HOME/.local/bin
+  printf "\t\tinstalling \033[34mchezmoi\033[0m\n.\n"
+  sh -c "$(curl -fsLS get.chezmoi.io)" -- -b "$HOME"/.local/bin
 fi
 
 # Install neovim as an appimage
 if [ -f "$HOME/.local/bin/nvim.appimage" ]; then
-  printf "\t\tpackage neovim is already installed.\n"
+  printf "\t\tpackage \033[34mneovim\033[0m\n is already installed.\n"
 else
-  printf "\t\tinstalling neovim...\n"
+  printf "\t\tinstalling \033[34mneovim\033[0m\n...\n"
   wget -q https://github.com/neovim/neovim/releases/download/stable/nvim.appimage -O "$HOME"/.local/bin/nvim.appimage
 fi
+printf "\t\033[35m[ manual installations - end ]\033[0m\n"
