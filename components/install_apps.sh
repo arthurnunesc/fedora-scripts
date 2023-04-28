@@ -112,10 +112,3 @@ else
   printf "\t\tinstalling neovim...\n"
   wget -q https://github.com/neovim/neovim/releases/download/stable/nvim.appimage -O "$HOME"/.local/bin/nvim.appimage
 fi
-
-if [ -f "$HOME/.local/bin/sspt" ]; then
-  printf "\t\tscript sspt is already in user bin folder.\n"
-else
-  cp ./scripts/spotify-tui/sspt "$HOME"/.local/bin/sspt
-  printf "\t\tscript sspt was copied to the user bin folder.\n"
-fi
