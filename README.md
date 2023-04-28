@@ -10,7 +10,9 @@ All of the scripts are POSIX compliants and should work on any POSIX compliant s
 
 `./run config` to only configure everything.
 
-`./run install`
+`./run install` to only install everything.
+
+`./run` to see options.
 
 ## Observations
 

@@ -28,7 +28,7 @@ ask_if_reboot() {
   fi
 }
 
-printf "\n\033[36mwelcome! starting now.\033[0m\n\n"
+printf "\n\033[36mwelcome!\033[0m\n\n"
 
 if [ "$1" = "both" ]; then
   printf "\033[32minstalling and configuring everything...\033[0m\n"
@@ -43,7 +43,10 @@ elif [ "$1" = "config" ]; then
   printf "\033[32monly running configuration scripts...\033[0m\n"
   config
 else
-  printf "\033[33mplease rerun the command with an option:\033[0m [install/config/both]\n"
+  printf "\033[33mplease rerun the command with an option:\033[0m\n"
+  printf "\t'./run both' to install and configure everything.\n"
+  printf "\t'./run config' to only configure everything.\n"
+  printf "\t'./run install' to only install everything.\n"
   exit 1
 fi
 
