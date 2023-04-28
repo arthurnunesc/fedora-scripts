@@ -63,7 +63,7 @@ sudo rpm --quiet --import https://packages.microsoft.com/keys/microsoft.asc
 sudo sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
 
 # Remove previous Docker versions and add its repo
-sudo dnf remove -yq docker docker-client docker-client-latest docker-common docker-latest docker-latest-logrotate docker-logrotate docker-selinux docker-engine-selinux docker-engine > /dev/null 2>&1
+# sudo dnf remove -yq docker docker-client docker-client-latest docker-common docker-latest docker-latest-logrotate docker-logrotate docker-selinux docker-engine-selinux docker-engine > /dev/null 2>&1
 sudo dnf config-manager -yq --add-repo https://download.docker.com/linux/fedora/docker-ce.repo > /dev/null 2>&1
 
 # Add flathub repo
