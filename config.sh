@@ -1,19 +1,19 @@
 #!/usr/bin/env sh
 
-echo "running linux config files..."
-echo "configuring gnome..."
+printf "\t- running linux config files...\n"
+printf "\t- configuring gnome...\n"
 sh ./components/gnome.sh
-echo "configuring python..."
+printf "\t- configuring python...\n"
 sh ./components/python.sh
-echo "installing rust apps..."
+printf "\t- installing rust apps...\n"
 sh ./components/rust.sh
-echo "configuring git variables..."
+printf "\t- configuring git variables...\n"
 sh ./components/git.sh
-echo "syncing dotfiles..."
+printf "\t- syncing dotfiles...\n"
 sh ./components/dotfiles.sh
-# echo "cloning eyecandy..."
+# printf "\t- cloning eyecandy..."
 # sh ./components/eyecandy.sh "$machine"
-echo "setting zsh as default shell..."
+printf "\t- setting zsh as default shell...\n"
 if [ "$SHELL" != "/bin/zsh" ]; then
   chsh -s /bin/zsh
 fi
