@@ -1,5 +1,7 @@
 #!/usr/bin/env sh
 
+printf "\t- configuring gnome...\n"
+
 # Switch Gnome's stock Alt+tab function to MacOS'
 dconf write /org/gnome/desktop/wm/keybindings/switch-applications "['']"
 dconf write /org/gnome/desktop/wm/keybindings/switch-applications-backward "['']"

@@ -1,9 +1,11 @@
 #!/usr/bin/env sh
 
+printf "\t- configuring python and installing pip packages...\n"
+
 pip3_apps="pip setuptools tldr norminette ruff-lsp black pynvim black[jupyter] black[d]"
 
-echo "$pip3_apps" | tr ' ' '\n' | while read -r item; do
-  pip3 install -Uq "$item"
+echo "$pip3_apps" | tr ' ' '\n' | while read -r pkg; do
+  pip3 install -Uq "$pkg"
 done
 
 if [ ! -d "$HOME"/.local/venv/nvim ]; then
