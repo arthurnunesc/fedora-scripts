@@ -99,22 +99,23 @@ systemctl --user enable --now ulauncher
 
 # Installing chezmoi on user binaries folder
 if [ -f "$HOME/.local/bin/chezmoi" ]; then
-  printf "\tpackage chezmoi is already installed.\n"
+  printf "\t\tpackage chezmoi is already installed.\n"
 else
-  printf "\tinstalling chezmoi.\n"
+  printf "\t\tinstalling chezmoi.\n"
   sh -c "$(curl -fsLS get.chezmoi.io)" -- -b $HOME/.local/bin
 fi
 
 # Install neovim as an appimage
 if [ -f "$HOME/.local/bin/nvim.appimage" ]; then
-  printf "\tpackage neovim is already installed.\n"
+  printf "\t\tpackage neovim is already installed.\n"
 else
+  printf "\t\tinstalling neovim...\n"
   wget -q https://github.com/neovim/neovim/releases/download/stable/nvim.appimage -O "$HOME"/.local/bin/nvim.appimage
 fi
 
 if [ -f "$HOME/.local/bin/sspt" ]; then
-  printf "\tscript sspt is already in user bin folder.\n"
+  printf "\t\tscript sspt is already in user bin folder.\n"
 else
   cp ./scripts/spotify-tui/sspt "$HOME"/.local/bin/sspt
-  printf "\tscript sspt was copied to the user bin folder.\n"
+  printf "\t\tscript sspt was copied to the user bin folder.\n"
 fi
