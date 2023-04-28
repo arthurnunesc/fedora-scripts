@@ -5,7 +5,7 @@
 # Branch defaults to main if not specified
 # ATTENTION: If given a directory that is not a git repository, it will be deleted.
 if [ -z "$1" ] || [ -z "$2" ]; then
-  echo "Usage: ./repo_updater.sh <repository> <directory> <branch(optional)>"
+  echo "Usage: ./repo_updater <repository> <directory> <branch(optional)>"
   exit 1
 fi
 
