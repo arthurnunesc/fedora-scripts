@@ -73,7 +73,7 @@ flatpak remote-add --if-not-exists flathub-beta https://flathub.org/beta-repo/fl
 printf "\t- updating everything...\n"
 update_everything
 
-printf "\t\033[34m[ dnf - start ]\033[0m\n\n"
+printf "\n\t\033[34m[ dnf - start ]\033[0m\n"
 printf "\t- installing codecs, utils and dependencies...\n"
 install_dnf_pkgs_from_string "$dnf_pkgs_codecs_and_utils"
 sudo dnf install -yq gstreamer1-plugins-good gstreamer1-plugins-base --exclude=gstreamer1-plugins-bad-free-devel
