@@ -1,13 +1,17 @@
 # fedora-scripts
 
-This is a compilation of scripts written to help me install all my utilities, tools and programs plus their respective configs on my personal computers that run Fedora.
+This is a compilation of scripts written to help me install and configure utilities, tools and programs on my personal computers that run Fedora.
 
 All of the scripts are POSIX compliants and should work on any POSIX compliant shell(I use dash).
 
-## usage
+## Usage
 
 `./run both` to both install and configure everything.
 
 `./run config` to only configure everything.
 
 `./run install`
+
+## Observations
+
+This was written specifically for Fedora, it may work in other dnf based distros but I haven't tested it.
