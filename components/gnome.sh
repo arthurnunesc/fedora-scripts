@@ -58,12 +58,12 @@ dconf write /org/gnome/desktop/wm/preferences/button-layout "'close,minimize,max
 # Change default terminal to kitty
 dconf write /org/gnome/desktop/applications/terminal/exec "'kitty'"
 
-# Light theme
-dconf write /org/gnome/desktop/interface/gtk-theme "'Adwaita'"
+# # Light theme
+# dconf write /org/gnome/desktop/interface/gtk-theme "'Adwaita'"
 
-# # Dark theme
-# dconf write /org/gnome/desktop/interface/color-scheme "'prefer-dark'"
-# dconf write /org/gnome/desktop/interface/gtk-theme "'Adwaita-dark'"
+# Dark theme
+dconf write /org/gnome/desktop/interface/color-scheme "'prefer-dark'"
+dconf write /org/gnome/desktop/interface/gtk-theme "'Adwaita-dark'"
 
 # Change locking key
 dconf write /org/gnome/settings-daemon/plugins/media-keys/screensaver "'<Alt><Ctrl>q'"
