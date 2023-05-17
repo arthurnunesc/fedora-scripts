@@ -1,3 +1,7 @@
+# DEPRECATED
+
+New development is being continued at [linux-scripts](https://github.com/arthurnunesc/linux-scripts), favouring a more distro-agnostic approach.
+
 # fedora-scripts
 
 This is a compilation of scripts written to help me install and configure utilities, tools and programs on my personal computers that run Fedora.
